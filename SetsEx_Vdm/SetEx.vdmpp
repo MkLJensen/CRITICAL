@@ -1,0 +1,115 @@
+class mySetClass
+
+types
+public SS = set of set of nat;
+
+-- EXERCISE 1
+-- Please define a Boolean VDM function called pairwiseDisjoint with takes a
+-- value belonging to the SS type and yields true if and only if all the sets in the set of
+-- sets have no elements overlapping with any of the other sets. Otherwise, the function
+-- shall yield false.
+
+functions
+public pairwiseDisjoint : SS -> bool
+pairwiseDisjoint(SS) ==
+    forall s1,s2 in set SS & 
+        s1 <> s2 => s1 inter s2 = {};
+
+
+-- EXERCISE 2
+-- Please define a function called Elements that takes a value from the SS type and
+-- yields a set of natural numbers that that are all those that are members of any of the
+-- element sets.
+
+public Elements : SS -> set of nat
+Elements(SS) == 
+    dunion(SS);
+
+
+
+-- EXERCISE 3
+-- Please define a Boolean function called IsPartition that takes two arguments: 1)
+-- a member of SS and 2) a set of natural numbers. This function shall yield true if and
+-- only if the first element is a partition of the second argument, i.e. all members from the
+-- second argument are present in one and only one of the sets in the first argument and
+-- there are no elements in any of the sets in the first argument that are not present in the
+-- second argument.
+
+public IsPartition : SS * set of nat -> bool
+
+-- check that s2 is in ss_1
+-- check there only is 1 s2 in ss_1, (But can't since set will only contain 1 entry of a set?)
+-- that that the dunion of ss contains the same number as s2
+
+IsPartition(ss_1,s_2) == 
+        {s_2} psubset ss_1 and dunion(ss_1) = s_2;
+
+
+-- EXERCISE 4
+-- Please define a function called SumSS that takes a value belonging to SS and yields a
+-- natural number which correspond to the sum of all elements that are inside any of the
+-- element sets.
+
+-- RECURSION METHOD
+Sum: set of nat +> nat
+Sum(s) ==
+    if s = {}
+    then 0
+    else let e in set s in
+        e + Sum(s \ {e})
+measure card s;
+
+SumSS : SS -> nat
+SumSS(s) ==
+    if s = {}
+    then 0
+    else let x in set s in
+        Sum(x) + SumSS(s\{x})
+measure card s;
+
+
+values
+    ss0 : set of nat = {};
+    ss1 : SS = {{1,2,3},{4,5,6},{7,8,9}}; -- true
+    ss2 : SS = {{1,2,3},{3,5,6},{2,8,1}}; -- false
+    ss3 : SS = {{1,2,3},{1,2,3},{1,2,3}}; -- false
+
+    ss4 : SS = {{1,2,3},{3,5,6},{2,8,1}}; -- {1, 2, 3, 5, 6, 8}
+    ss5 : SS = {{1,2,3},{1,2,3},{1,2,3}}; -- {1, 2, 3}
+
+    ss6 : SS = {{1,2,3},{3,2,3},{2,2,3}}; -- true
+    ss7 : SS = {{1,2,3},{1,2,3},{2,2,3}}; -- true
+    ss8 : SS = {{1,2,3},{4,2,3},{2,2,3}}; -- false
+    ss9 : SS = {{2,2,2},{2,2,3},{3,2,3}}; -- false
+    sN1 : set of nat = {1,2,3};
+
+-- WORKING AT MAIN :D
+
+operations
+    public Run : () ==> ()
+    Run() == 
+            IO`println(pairwiseDisjoint(ss2));
+
+    public Run2 : () ==> ()
+    Run2() == 
+            IO`println(Elements(ss4));
+
+    public Run3 : () ==> ()
+    Run3() ==
+            IO`println(IsPartition(ss6,sN1));
+
+    public Run4 : () ==> ()
+    Run4() ==
+            IO`println(SumSS(ss1));
+
+
+
+
+
+
+
+
+
+
+end mySetClass
+

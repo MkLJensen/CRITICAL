@@ -1,0 +1,37 @@
+{
+    "configurations": [
+
+        {
+            "name": "Launch VDM Debug from mySetClass`Run()",
+            "type": "vdm",
+            "request": "launch",
+            "noDebug": false,
+            "defaultName": null,
+            "command": "print new mySetClass().Run()"
+        },
+        {
+            "name": "Launch VDM Debug from mySetClass`Run2()",
+            "type": "vdm",
+            "request": "launch",
+            "noDebug": false,
+            "defaultName": null,
+            "command": "print new mySetClass().Run2()"
+        },
+        {
+            "name": "Launch VDM Debug from mySetClass`Run3()",
+            "type": "vdm",
+            "request": "launch",
+            "noDebug": false,
+            "defaultName": null,
+            "command": "print new mySetClass().Run3()"
+        },
+        {
+            "name": "Launch VDM Debug from mySetClass`Run4()",
+            "type": "vdm",
+            "request": "launch",
+            "noDebug": false,
+            "defaultName": null,
+            "command": "print new mySetClass().Run4()"
+        }
+    ]
+}
