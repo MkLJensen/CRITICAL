@@ -50,21 +50,17 @@ IsPartition(ss_1,s_2) ==
 -- natural number which correspond to the sum of all elements that are inside any of the
 -- element sets.
 
+SumSS: SS -> nat
+SumSS(s) == 
+        SumSet(Elements(s));
+
 -- RECURSION METHOD
-Sum: set of nat +> nat
-Sum(s) ==
+SumSet: set of nat +> nat
+SumSet(s) ==
     if s = {}
     then 0
     else let e in set s in
-        e + Sum(s \ {e})
-measure card s;
-
-SumSS : SS -> nat
-SumSS(s) ==
-    if s = {}
-    then 0
-    else let x in set s in
-        Sum(x) + SumSS(s\{x})
+        e + SumSet(s \ {e})
 measure card s;
 
 
