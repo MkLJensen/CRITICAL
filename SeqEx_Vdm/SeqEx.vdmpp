@@ -1,0 +1,102 @@
+class myHeartClass
+
+instance variables
+
+pAEvent     : nat;
+pAEventV    : nat;
+
+
+types 
+    Trace = seq of [Event];
+    Event = <A> | <V>;
+
+
+functions
+Periodic: Trace * Event * nat1 -> bool
+Periodic(tr,e,p) ==
+    forall t in set inds tr & -- For all indices in the trace
+        tr(t) = e => -- If the trace to the t is the same as the event e given means the next is also true
+            (t + p <= len tr => -- Given the length of the indices plus the period is les than or equal to the lengh of the trace
+                (tr(t+p) = e and -- The indices + periode in the trace signal is the same as the event.
+    
+    forall i in set {t+1, ..., t+p-1} & tr(i) <> e)) -- For all the i in set indices +1 up to indices + period -1, the trace must be different from e
+        and (t + p > len tr => -- And then the indices and the period must be longer than the len of the trace given
+
+    forall i in set {t+1, ..., len tr} & tr(i) <> e); -- Then all indices in set indices +1 to the length of the trace is different from e
+
+MakeSinglePeriod: nat * nat -> Trace
+MakeSinglePeriod(pAEvent_,pAEventV_) ==
+    [<A>] ^ [nil | i in set { 2, ..., pAEventV_-1 }] ^ [<V>] ^ [nil | i in set {pAEventV_+1, ..., pAEvent_}];
+
+MakeFaultySinglePeriod: nat * nat -> Trace
+MakeFaultySinglePeriod(pAEvent_,pAEventV_) ==
+    [<A>] ^ [nil | i in set { 2, ..., pAEventV_-1 }] ^ [<V>] ^ [nil | i in set {pAEventV_+1, ..., pAEvent_}];
+
+CreateFullTrace: Trace -> Trace
+CreateFullTrace(tr) ==
+    [tr(i) | i in set {1,...,100}];
+
+
+MakeFullTraceLength: Trace -> Trace
+MakeFullTraceLength(tr) ==
+    [tr(x) | x in set inds tr & x > 1 and x <= 100]
+
+
+values
+    tr1 : Trace = [<A>, nil, <V>, nil, nil, <A>, nil, <V>, nil, nil];
+    tr2 : Trace = [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil];
+    tr3 : Trace = [<A>, <V>, <A>, nil, nil, <V>, <A>, nil, <V>, nil];
+
+operations
+
+    myHeartClass: nat * nat ==> myHeartClass
+    myHeartClass(pAEvent_, pAEventV_) == 
+    (
+        pAEvent     := pAEvent_;
+        pAEventV    := pAEventV_;
+    )
+    pre pAEventV_ < pAEvent_ and 100 mod pAEvent_ = 0;
+
+
+
+    MakeLongTrace: nat * nat ==> Trace
+        MakeLongTrace(pAEvent_, pAEventV_) ==
+        return conc [MakeSinglePeriod(pAEvent_, pAEventV_) | i in set {1,...,100}];
+
+    MakeLongTraceFaulty: nat * nat ==> Trace
+        MakeLongTraceFaulty(pAEvent_, pAEventV_) ==
+        return conc [MakeFaultySinglePeriod(pAEvent_, MATH`rand(pAEventV_-1)+1) | i in set {1,...,100}];
+
+    ideal:() ==> Trace
+    ideal() ==
+        CreateFullTrace(MakeLongTrace(pAEvent, pAEventV));
+
+    faulty:() ==> Trace
+    faulty() ==
+        CreateFullTrace(MakeLongTraceFaulty(pAEvent, pAEventV));
+
+    public Run : () ==> ()
+    Run() == 
+            IO`println(Periodic(tr1,<A>,5));
+
+    public Run2 : () ==> ()
+    Run2() == 
+            IO`println(Periodic(tr2,<V>,5));
+
+    public Run3 : () ==> ()
+    Run3() == 
+            IO`println(Periodic(tr3,<V>,5));
+
+    public Run4 : () ==> ()
+    Run4() == 
+    (
+        IO`println(new myHeartClass(10,4).ideal());
+    );
+
+    public Run5 : () ==> ()
+    Run5() == 
+    (
+        IO`println(new myHeartClass(10,4).faulty());
+    );
+
+end myHeartClass
