@@ -42,8 +42,10 @@ public IsPartition : SS * set of nat -> bool
 -- that that the dunion of ss contains the same number as s2
 
 IsPartition(ss_1,s_2) == 
-        {s_2} psubset ss_1 and dunion(ss_1) = s_2;
+        {s_2} subset ss_1 and dunion(ss_1) = s_2;
 
+        -- pairwiseDisjoint(ss_1) and dunion(ss_1) = s_2;
+        -- Peters løsning
 
 -- EXERCISE 4
 -- Please define a function called SumSS that takes a value belonging to SS and yields a
