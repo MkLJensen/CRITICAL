@@ -1,0 +1,34 @@
+class AddressRepository is subclass of GLOBAL
+
+instance variables
+    addresses_ : map seq of char to set of GarbagePack := {|->};
+
+operations
+public AddressRepository : map seq of char to set of GarbagePack ==> AddressRepository
+AddressRepository(aMap) == 
+(
+    addresses_ := aMap;
+);
+
+public addToAddresses : map seq of char to set of GarbagePack ==> ()
+addToAddresses(aMap) ==
+(
+    addresses_ := addresses_ munion aMap
+);
+
+public addGarbageToAddress : seq of char * GarbagePack ==> ()
+addGarbageToAddress(address, garbage) ==
+(
+    -- Maybe ensure that address is in the address list
+    addresses_(address) := addresses_(address) union {garbage}
+
+);
+
+public getAddresses : () ==> map seq of char to set of GarbagePack
+getAddresses() ==
+(
+    return addresses_;
+);
+
+
+end AddressRepository

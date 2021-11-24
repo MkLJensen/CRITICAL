@@ -1,0 +1,40 @@
+@startuml Garbage Sorting System Sequence
+start
+repeat 
+:Collect Sets of Garbage;
+repeat while (Done Collecting Garbage?) is (no)
+->yes;
+note left 
+Possibly have a Sequence of addresses where to collect garbage from
+endnote
+
+:Deliver Sets of Garbage to Sorting Plant;
+
+:Go through set;
+:Look up handling sequence from garbage type;
+note left
+Handling Sequence should be found in a map of sequences
+endnote
+:Do Garbage Handling Sequence of Garbage Type;
+
+switch (Type of Waste)
+case (Paper)
+  :Shred Paper;
+  :Pack Papers;
+  :Wrap Paper;
+case (Metal) 
+  :Group Metals;
+  :Is there enough metal to melt a block?;
+  :Melt the block;
+case (Glass)
+  :Wash Glass;
+  :Melt Glass;
+  :Pack Glass;
+  :Wrap Glass;
+case (Plastic)
+  :Sort Type of Plastic;
+  :Shred Plastic Types;
+  :Pack and Wrap Plastics;
+endswitch
+stop
+@enduml

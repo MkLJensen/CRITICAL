@@ -1,0 +1,51 @@
+class Environment is subclass of GLOBAL
+
+instance variables 
+FinishedCollecting : bool := false;
+addrs : AddressRepository;
+io : IO := new IO();
+
+
+operations
+
+public Environment : seq of char ==> Environment
+Environment(fname) ==
+    def mk_(-,input) = io.freadval[seq of inline](fname) 
+        in
+            inlines := input;
+
+
+public Run : () ==> ()
+Run() ==
+    (
+        while not FinishedCollecting
+        do 
+        (
+            updateGarbageTrucks();
+            --RecyclingPlant.Step();
+        );
+        recycleGarbage();
+    );
+
+
+private recycleGarbage : () ==> ()
+recycleGarbage() ==
+(
+
+);
+
+
+private updateGarbageTrucks : () ==> ()
+updateGarbageTrucks() ==
+(
+    if len addrs.getAddresses > 0
+    then 
+        IO`println("TEST")
+    else
+        FinishedCollecting := true
+
+);
+
+
+
+end Environment

@@ -1,0 +1,29 @@
+class GarbagePack is subclass of GLOBAL
+
+instance variables
+-- TODO ADD INVARIANT
+garbageSet : set of GarbageType := {}
+
+operations
+public GarbagePack : set of GarbageType ==> GarbagePack
+GarbagePack(garbage) == 
+(
+    garbageSet := garbage;
+);
+
+public addToGarbagePack : GarbageType ==> ()
+addToGarbagePack(gp) ==
+(
+    garbageSet := garbageSet union {gp};
+);
+
+pure public getGarbagePack : () ==> set of GarbageType
+getGarbagePack() == 
+(
+    return garbageSet;
+);
+
+
+
+
+end GarbagePack

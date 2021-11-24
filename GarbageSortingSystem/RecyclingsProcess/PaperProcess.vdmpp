@@ -1,0 +1,13 @@
+class PaperProcess is subclass of RecyclingProcess
+operations
+
+public action : (GarbageType) ==> ()
+action(o) == (
+    IO`print("Recycling Paper with Weight: ");
+    IO`print(o.getWeight());
+    IO`print("With Dimensions: ");
+    IO`print(o.getDimensions());
+    IO`print("Shreddding .... WRRRROKORRMMOOOWORRRROH");
+);
+
+end PaperProcess

@@ -1,0 +1,93 @@
+@startuml GSS Class System
+
+
+class GarbageTruck{
+    -GarbagePackSeq : Seq<GarbagePack>
+    -GarbageTruckId : string
+}
+
+class GarbagePack{
+    -GarbageSeq : Seq<GarbageType>   
+    +Seq<GarbageType> : getGarbageSeq()
+}
+
+class RecyclingPlant{
+    -recyclingProcessRepository : RecyclingProcessRepository
+    -trucks : Set<GarbageTruck>
+}
+
+class GarbageType{
+    {abstract}garbageType: Set[*]
+}
+
+class RecyclingProcessRepository{
+    #recylingProcesses : inMap<<GarbageType>, Seq<RecyclingProcess>>
+}
+
+class RecyclingProcess{
+    {abstract} void action()
+}
+
+class AddressRepository{
+    -adresses : inMap<Address, Seq<GarbagePack>>
+}
+
+class GarbageSorter{
+
+
+    +Map<GarbageType, Seq<GarbageType>> sortGarbagePack(GarbagePack)
+}
+
+class PaperProcess{
+    void action()
+}
+class GlassProcess{
+    void action()
+}
+class MetalProcess{
+    void action()
+}
+class PlasticProcess{
+    void action()
+}
+
+class Paper{
+    paperTypes: PaperType[*]
+}
+class Glass{
+    glassTypes: GlassType[*]
+}
+class Metal{
+    metalTypes: MetalType[*]
+}
+class Plastic{
+    plasticTypes: PlasticType[*]
+}
+
+
+RecyclingPlant <-- GarbageSorter
+RecyclingPlant <-- GarbageTruck
+RecyclingPlant <-- RecyclingProcessRepository
+
+RecyclingProcess <|-- PaperProcess
+RecyclingProcess <|-- GlassProcess
+RecyclingProcess <|-- MetalProcess
+RecyclingProcess <|-- PlasticProcess
+
+AddressRepository <-- GarbageTruck
+AddressRepository <-- GarbagePack
+
+GarbageTruck  <-- GarbagePack
+
+RecyclingProcessRepository <--- RecyclingProcess
+
+GarbageSorter <-- GarbagePack
+
+GarbagePack <--- GarbageType
+GarbageType <|--- Paper
+GarbageType <|--- Glass
+GarbageType <|--- Metal
+GarbageType <|--- Plastic
+
+
+@enduml

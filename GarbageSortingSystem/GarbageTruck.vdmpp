@@ -1,0 +1,36 @@
+class GarbageTruck is subclass of GLOBAL
+
+instance variables
+-- TODO ADD INVARIANT
+garbageTruckId_ : seq of char := "Undefined";
+garbagePackSet_ : set of GarbagePack;
+
+operations
+public GarbageTruck : set of GarbagePack * seq of char ==> GarbageTruck
+GarbageTruck(gsp, id) == 
+atomic
+(
+    garbagePackSet_ := gsp;
+    garbageTruckId_ := id;
+);
+
+
+pure public getTruckGarbage : () ==> set of GarbagePack
+getTruckGarbage() ==
+(
+    return garbagePackSet_;
+);
+
+public getTruckId : () ==> seq of char
+getTruckId() == 
+(
+    return garbageTruckId_;
+);
+
+public addToTruck : GarbagePack ==> ()
+addToTruck(gp) ==
+(
+    garbagePackSet_ := garbagePackSet_ union {gp};
+);
+
+end GarbageTruck

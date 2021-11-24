@@ -1,0 +1,26 @@
+class GarbageSorter
+
+types 
+    public GarbageMap = map GarbageType`GarbageId to set of GarbageType;
+
+functions
+
+public MapCombine : GarbageMap * GarbageMap -> GarbageMap
+MapCombine(m1, m2) == (
+    { gid |-> m1(gid) union m2(gid) | gid in set dom m1 }
+);
+
+
+
+
+public sortSetofGarbagePack: set of GarbageType -> GarbageMap
+sortSetofGarbagePack(s) == 
+    if s = {}
+        then {|->}
+    else
+        let shead in set s 
+            in MapCombine({shead.getGarbageId()|->{shead}} , sortSetofGarbagePack(s\{shead}))
+measure card s;
+
+
+end GarbageSorter

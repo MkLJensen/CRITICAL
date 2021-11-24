@@ -1,0 +1,43 @@
+class GarbageType
+
+instance variables
+public weight: nat; 
+inv weight > 0 and weight < 200; -- 200 Kg approx
+protected garbageId : GarbageId;
+
+
+public dimensions: dimensionsType;
+inv InvDimensions(dimensions)
+
+types
+
+public GarbageId = <GLASSID> | <METALID> | <PAPERID> | <PLASTICID>;
+
+public dimensionsType :: width  : nat
+                        length : nat
+                        height : nat;
+
+functions
+
+private InvDimensions : dimensionsType -> bool
+InvDimensions(mk_dimensionsType(width,length,height)) == 
+        width < 61 and width > 0 and    -- Less than 61 CM
+        length < 51 and width > 0 and   -- Less than 51 CM
+        height < 87 and width > 0;      -- Less than 87 CM
+
+
+operations
+
+pure public getWeight : () ==> nat
+getWeight() == 
+    return weight;
+
+pure public getDimensions : () ==> dimensionsType
+getDimensions() == 
+    return dimensions;
+
+pure public getGarbageId : () ==> GarbageId
+getGarbageId() ==
+    return garbageId;
+
+end GarbageType

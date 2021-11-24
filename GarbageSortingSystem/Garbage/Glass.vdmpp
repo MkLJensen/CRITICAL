@@ -1,0 +1,13 @@
+class Glass is subclass of GarbageType
+
+operations
+public Glass : dimensionsType * nat ==> Glass
+Glass(d, w) == 
+    atomic 
+    (
+        dimensions := d;
+        weight := w;
+        garbageId := <GLASSID>
+    );
+
+end Glass

@@ -1,0 +1,15 @@
+class MetalProcess is subclass of RecyclingProcess
+
+
+operations
+
+public action : (GarbageType) ==> ()
+action(o) == (
+    IO`print("Recycling Metal with Weight: ");
+    IO`print(o.getWeight());
+    IO`print("With Dimensions: ");
+    IO`print(o.getDimensions());
+    IO`print("Melting");
+);
+
+end MetalProcess

@@ -1,0 +1,9 @@
+class RecyclingProcess
+
+operations
+
+public action : (GarbageType) ==> ()
+action(o) == is subclass responsibility
+
+
+end RecyclingProcess

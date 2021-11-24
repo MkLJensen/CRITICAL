@@ -1,0 +1,15 @@
+class GlassProcess is subclass of RecyclingProcess
+
+
+operations
+
+public action : (GarbageType) ==> ()
+action(o) == (
+    IO`print("Recycling Glass with Weight: ");
+    IO`print(o.getWeight());
+    IO`print("With Dimensions: ");
+    IO`print(o.getDimensions());
+    IO`print("Smelting .... ");
+);
+
+end GlassProcess

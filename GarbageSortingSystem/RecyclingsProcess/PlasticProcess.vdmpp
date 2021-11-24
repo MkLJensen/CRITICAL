@@ -1,0 +1,15 @@
+class PlasticProcess is subclass of RecyclingProcess
+
+
+operations
+
+public action : (GarbageType) ==> ()
+action(o) == (
+    IO`print("Recycling Plastic with Weight: ");
+    IO`print(o.getWeight());
+    IO`print("With Dimensions: ");
+    IO`print(o.getDimensions());
+    IO`print("Shreddding .... WRRRROKORRMMOOOWORRRROH");
+);
+
+end PlasticProcess

@@ -1,0 +1,55 @@
+class Purse
+types
+    public CardId = seq of char
+
+instance variables
+private balance: nat;
+private cardNo: CardId;
+
+operations
+public  IncreaseBal: nat ==> ()
+        IncreaseBal(sum)==
+            balance := balance + sum;
+
+public  DecreaseBal: nat ==> ()
+        DecreaseBal(sum)==
+            balance := balance - sum
+post sum <= balance;
+
+pure public GetBalance: () ==> nat
+            GetBalance() == 
+                return balance;
+
+
+pure public GetCardNo: () ==> CardId
+            GetCardNo() ==
+                return cardNo;
+
+public          Purse: CardId * nat ==> Purse
+                Purse(newId, startbal) ==
+                    (cardNo    := newId;
+                    balance := startbal);
+
+functions
+-- No functions currently defined
+end Purse
+
+
+
+class System
+instance variables
+    private Purses: map Purse’CardId to Purse;
+    -- DO we need invariance??? Map is already making sure we only have 1 ID.
+    
+types
+-- no types currently defined
+operations
+public Transfer: Purse’CardId * Purse’CardId * nat ==> ()
+    Transfer(fromId, toId, sum) == ???;
+
+public System: set of Purse ==> System
+    System(PurseSet) == ???;
+
+functions
+-- no functions currently defined
+end System

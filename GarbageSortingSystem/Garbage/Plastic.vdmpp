@@ -1,0 +1,14 @@
+class Plastic is subclass of GarbageType
+
+operations
+public Plastic : dimensionsType * nat ==> Plastic
+Plastic(d, w) == 
+    atomic 
+    (
+        dimensions := d;
+        weight := w;
+        garbageId := <PLASTICID>
+    );
+
+
+end Plastic

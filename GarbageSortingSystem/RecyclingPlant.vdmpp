@@ -1,0 +1,36 @@
+class RecyclingPlant
+
+instance variables
+
+trucks : set of GarbageTruck := {};
+
+sortedGarbage : GarbageSorter`GarbageMap := {   <GLASSID>   |-> {},
+                                                <METALID>   |-> {},
+                                                <PAPERID>   |-> {},
+                                                <PLASTICID> |-> {}
+                                            };
+
+functions
+
+public getSeqOfIndividualGarbageFromTruck : GarbageTruck -> set of GarbageType
+getSeqOfIndividualGarbageFromTruck(gbTruck) == (
+    dunion {i.getGarbagePack() | i in set gbTruck.getTruckGarbage()}
+);
+
+
+operations
+
+
+public sortAllTrucks : () ==> GarbageSorter`GarbageMap
+sortAllTrucks() == (
+    for all t in set trucks
+        do 
+            let x = getSeqOfIndividualGarbageFromTruck(t) in
+                sortedGarbage := GarbageSorter`MapCombine(sortedGarbage,GarbageSorter`sortSetofGarbagePack(x));
+    return sortedGarbage 
+);
+
+
+
+
+end RecyclingPlant
