@@ -1,0 +1,25 @@
+class World
+instance variables  
+
+public static
+  env : [Environment] := nil;
+
+public static 
+  timer : Timer := new Timer();
+   
+operations
+
+public 
+  World : () ==> World
+  World() ==
+    ( env := new Environment("scenario.txt");
+      env.setAddrRepo(new AddressRepository());
+      env.addTrucks(GarbageSortingSystem`unfilledTrucks);
+    );
+  
+public 
+  Run : () ==> ()
+  Run() ==
+    env.Run();
+
+end World

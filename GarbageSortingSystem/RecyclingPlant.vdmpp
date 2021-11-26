@@ -2,7 +2,7 @@ class RecyclingPlant
 
 instance variables
 
-trucks : set of GarbageTruck := {};
+rcTrucks : set of GarbageTruck := {};
 
 sortedGarbage : GarbageSorter`GarbageMap := {   <GLASSID>   |-> {},
                                                 <METALID>   |-> {},
@@ -12,7 +12,7 @@ sortedGarbage : GarbageSorter`GarbageMap := {   <GLASSID>   |-> {},
 
 functions
 
-public getSeqOfIndividualGarbageFromTruck : GarbageTruck -> set of GarbageType
+private getSeqOfIndividualGarbageFromTruck : GarbageTruck -> set of GarbageType
 getSeqOfIndividualGarbageFromTruck(gbTruck) == (
     dunion {i.getGarbagePack() | i in set gbTruck.getTruckGarbage()}
 );
@@ -20,10 +20,24 @@ getSeqOfIndividualGarbageFromTruck(gbTruck) == (
 
 operations
 
+-- Sort the trucks, and then show the sorted garbage
+public Step : () ==> ()
+Step() == (
+    dcl sortedMap : GarbageSorter`GarbageMap := sortAllTrucks()
+    (
 
-public sortAllTrucks : () ==> GarbageSorter`GarbageMap
+    );
+);
+
+
+
+public addFilledTrucksToPlant : set of GarbageTruck ==> ()
+addFilledTrucksToPlant(filledTrucks) == 
+    rcTrucks := rcTrucks union filledTrucks;
+
+private sortAllTrucks : () ==> GarbageSorter`GarbageMap
 sortAllTrucks() == (
-    for all t in set trucks
+    for all t in set rcTrucks
         do 
             let x = getSeqOfIndividualGarbageFromTruck(t) in
                 sortedGarbage := GarbageSorter`MapCombine(sortedGarbage,GarbageSorter`sortSetofGarbagePack(x));

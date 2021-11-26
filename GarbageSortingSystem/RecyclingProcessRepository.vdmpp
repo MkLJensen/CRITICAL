@@ -2,17 +2,17 @@ class RecyclingProcessRepository
 
 instance variables
 
-recyclingProcesses: map GarbageType`GarbageId to seq of RecyclingProcess := {
-    <PAPERID>     |-> [new PaperProcess()],
-    <GLASSID>     |-> [new GlassProcess()],
-    <METALID>     |-> [new MetalProcess()],
-    <PLASTICID>   |-> [new PlasticProcess()]
+recyclingProcesses: map GarbageType`GarbageId to RecyclingProcess := {
+    <PAPERID>     |-> new PaperProcess(),
+    <GLASSID>     |-> new GlassProcess(),
+    <METALID>     |-> new MetalProcess(),
+    <PLASTICID>   |-> new PlasticProcess()
 };
 
 operations
 
 -- Check in the Recycling Process, and return the same type of the Paper if input is Paper
-public getRecyclingProcess: GarbageType ==> seq of RecyclingProcess
+public getRecyclingProcess: GarbageType ==> RecyclingProcess
 getRecyclingProcess(gb) == (
     for all x in set dom recyclingProcesses
     do (
@@ -20,7 +20,7 @@ getRecyclingProcess(gb) == (
         then
             return recyclingProcesses(x)
     );
-    return [];
+    return nil;
 );
 
 end RecyclingProcessRepository

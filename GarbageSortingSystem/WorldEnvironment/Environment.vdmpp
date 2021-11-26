@@ -1,51 +1,79 @@
 class Environment is subclass of GLOBAL
 
+types
+
+inline  = seq of char * set of GarbagePack * Time;   
+
 instance variables 
 FinishedCollecting : bool := false;
-addrs : AddressRepository;
+addrs : [AddressRepository] := nil;
+plant : [RecyclingPlant] := nil;
+trucks : set of GarbageTruck := {};
 io : IO := new IO();
 
+inlines     : seq of inline  := [];
 
 operations
 
 public Environment : seq of char ==> Environment
 Environment(fname) ==
-    def mk_(-,input) = io.freadval[seq of inline](fname) 
+     def mk_(-,input) = io.freadval[seq of inline](fname) 
         in
             inlines := input;
+
+public setAddrRepo : AddressRepository ==> ()
+setAddrRepo(adr) ==
+    addrs := adr;
+
+public addTrucks : set of GarbageTruck ==> ()
+addTrucks(setofgt) ==
+    trucks := trucks union setofgt;
 
 
 public Run : () ==> ()
 Run() ==
     (
-        while not FinishedCollecting
-        do 
+        while (not FinishedCollecting) do 
         (
-            updateGarbageTrucks();
-            --RecyclingPlant.Step();
+        updateAddresses();
+        addGarbageToEmptyTrucks();
+        --Send to RecyclingPlant
+        --RecyclingPlant.Step();
+        World`timer.StepTime();
         );
-        recycleGarbage();
     );
 
-
-private recycleGarbage : () ==> ()
-recycleGarbage() ==
+private addGarbageToEmptyTrucks : () ==> ()
+addGarbageToEmptyTrucks() ==
 (
-
+    IO`println("TEST");
 );
 
-
-private updateGarbageTrucks : () ==> ()
-updateGarbageTrucks() ==
+private updateAddresses : () ==> ()
+updateAddresses() ==
 (
-    if len addrs.getAddresses > 0
+    if len inlines > 0
     then 
-        IO`println("TEST")
+        (dcl curtime : Time := World`timer.GetTime(),
+            doneRead : bool := false;
+            while not doneRead do
+            (
+                def mk_(adrString, gbpackset, objTime) = hd inlines
+                in
+                    if objTime <= curtime
+                    then (
+                            addrs.addToAddresses({adrString |-> gbpackset});
+                            inlines := tl inlines; 
+                            doneRead := len inlines = 0;
+                        )
+                    else
+                        doneRead := true
+            )
+        )
     else
         FinishedCollecting := true
 
 );
-
 
 
 end Environment

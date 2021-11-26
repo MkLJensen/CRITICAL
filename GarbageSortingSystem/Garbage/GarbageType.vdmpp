@@ -1,12 +1,12 @@
 class GarbageType
 
 instance variables
-public weight: nat; 
+public weight: nat := 0; 
 inv weight > 0 and weight < 200; -- 200 Kg approx
-protected garbageId : GarbageId;
+protected garbageId : [GarbageId] := nil;
 
 
-public dimensions: dimensionsType;
+public dimensions: [dimensionsType] := nil;
 inv InvDimensions(dimensions)
 
 types

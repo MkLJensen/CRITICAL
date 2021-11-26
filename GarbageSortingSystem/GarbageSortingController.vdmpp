@@ -1,0 +1,14 @@
+class GarbageSortingController
+
+instance variables
+trucks : set of GarbageTruck := {};
+
+operations
+public Step : () ==> ()
+Step() == 
+(
+    IO`println("TEST");
+);
+
+
+end GarbageSortingController

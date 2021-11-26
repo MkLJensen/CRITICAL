@@ -1,0 +1,8 @@
+class GarbageSortingSystem
+
+instance variables 
+
+public static unfilledTrucks : set of GarbageTruck := {new GarbageTruck("ID1"), new GarbageTruck("ID2"), new GarbageTruck("ID3")}
+
+
+end GarbageSortingSystem
