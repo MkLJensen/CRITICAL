@@ -10,30 +10,27 @@ sortedGarbage : GarbageSorter`GarbageMap := {   <GLASSID>   |-> {},
                                                 <PLASTICID> |-> {}
                                             };
 
-functions
-
-private getSeqOfIndividualGarbageFromTruck : GarbageTruck -> set of GarbageType
-getSeqOfIndividualGarbageFromTruck(gbTruck) == (
-    dunion {i.getGarbagePack() | i in set gbTruck.getTruckGarbage()}
-);
-
 
 operations
 
 -- Sort the trucks, and then show the sorted garbage
 public Step : () ==> ()
 Step() == (
-    dcl sortedMap : GarbageSorter`GarbageMap := sortAllTrucks()
-    (
-
-    );
+    dcl sortedMap : GarbageSorter`GarbageMap := sortAllTrucks();
+        handleGarbageMap(sortedMap);
 );
 
 
+private handleGarbageMap : GarbageSorter`GarbageMap ==> ()
+handleGarbageMap(gpMap) ==
+(
+    skip
+    -- Do though the sorted Garbage Map and print weight and dimenion of each type
+);
 
 public addFilledTrucksToPlant : set of GarbageTruck ==> ()
-addFilledTrucksToPlant(filledTrucks) == 
-    rcTrucks := rcTrucks union filledTrucks;
+addFilledTrucksToPlant(filledTruck) == 
+    rcTrucks := rcTrucks union filledTruck;
 
 private sortAllTrucks : () ==> GarbageSorter`GarbageMap
 sortAllTrucks() == (
@@ -45,6 +42,11 @@ sortAllTrucks() == (
 );
 
 
+functions
+private getSeqOfIndividualGarbageFromTruck : GarbageTruck -> set of GarbageType
+getSeqOfIndividualGarbageFromTruck(gbTruck) == (
+    dunion {i.getGarbagePack() | i in set gbTruck.getTruckGarbage()}
+);
 
 
 end RecyclingPlant

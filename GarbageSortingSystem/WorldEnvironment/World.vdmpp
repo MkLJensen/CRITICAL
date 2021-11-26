@@ -13,8 +13,6 @@ public
   World : () ==> World
   World() ==
     ( env := new Environment("scenario.txt");
-      env.setAddrRepo(new AddressRepository());
-      env.addTrucks(GarbageSortingSystem`unfilledTrucks);
     );
   
 public 

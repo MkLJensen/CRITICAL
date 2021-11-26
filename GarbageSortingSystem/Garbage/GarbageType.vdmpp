@@ -32,6 +32,10 @@ pure public getWeight : () ==> nat
 getWeight() == 
     return weight;
 
+pure public getVolume : () ==> nat
+getVolume() ==
+    return dimensions.width*dimensions.length*dimensions.height;
+
 pure public getDimensions : () ==> dimensionsType
 getDimensions() == 
     return dimensions;

@@ -1,26 +1,46 @@
 class RecyclingProcessRepository
 
-instance variables
+operations 
 
-recyclingProcesses: map GarbageType`GarbageId to RecyclingProcess := {
-    <PAPERID>     |-> new PaperProcess(),
-    <GLASSID>     |-> new GlassProcess(),
-    <METALID>     |-> new MetalProcess(),
-    <PLASTICID>   |-> new PlasticProcess()
-};
-
-operations
-
--- Check in the Recycling Process, and return the same type of the Paper if input is Paper
-public getRecyclingProcess: GarbageType ==> RecyclingProcess
-getRecyclingProcess(gb) == (
-    for all x in set dom recyclingProcesses
-    do (
-        if x = gb.getGarbageId()
-        then
-            return recyclingProcesses(x)
-    );
-    return nil;
+public handleGarbageMap : GarbageSorter`GarbageMap ==> ()
+handleGarbageMap(gpMap) ==
+(
+    skip
+    -- Do though the sorted Garbage Map and print weight and dimenion of each type
 );
 
 end RecyclingProcessRepository
+
+
+
+
+
+
+
+
+
+
+
+
+-- instance variables
+
+-- recyclingProcesses: map GarbageType`GarbageId to RecyclingProcess := {
+--     <PAPERID>     |-> new PaperProcess(),
+--     <GLASSID>     |-> new GlassProcess(),
+--     <METALID>     |-> new MetalProcess(),
+--     <PLASTICID>   |-> new PlasticProcess()
+-- };
+
+-- operations
+
+-- -- Check in the Recycling Process, and return the same type of the Paper if input is Paper
+-- public getRecyclingProcess: GarbageType ==> RecyclingProcess
+-- getRecyclingProcess(gb) == (
+--     for all x in set dom recyclingProcesses
+--     do (
+--         if x = gb.getGarbageId()
+--         then
+--             return recyclingProcesses(x)
+--     );
+--     return nil;
+-- );

@@ -4,11 +4,11 @@ instance variables
     addresses_ : map seq of char to set of GarbagePack := {|->};
 
 operations
-/*public AddressRepository : map seq of char to set of GarbagePack ==> AddressRepository
+public AddressRepository : map seq of char to set of GarbagePack ==> AddressRepository
 AddressRepository(aMap) == 
 (
     addresses_ := aMap;
-);*/
+);
 
 public addToAddresses : map seq of char to set of GarbagePack ==> ()
 addToAddresses(aMap) ==
