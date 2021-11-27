@@ -1,7 +1,7 @@
 class Plastic is subclass of GarbageType
 
 operations
-public Plastic : dimensionsType * nat ==> Plastic
+public Plastic : GLOBAL`dimensionsType * nat ==> Plastic
 Plastic(d, w) == 
     atomic 
     (

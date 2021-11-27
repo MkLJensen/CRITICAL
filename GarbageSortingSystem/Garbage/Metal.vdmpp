@@ -1,7 +1,7 @@
 class Metal is subclass of GarbageType
 
 operations
-public Metal : dimensionsType * nat ==> Metal
+public Metal : GLOBAL`dimensionsType * nat ==> Metal
 Metal(d, w) == 
     atomic 
     (

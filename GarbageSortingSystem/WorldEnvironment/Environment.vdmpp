@@ -2,7 +2,9 @@ class Environment is subclass of GLOBAL
 
 types
 
-inline  = seq of char * set of GarbagePack * Time;   
+inline = seq of char * seq of gbpackinputtype * Time
+
+--[mk_("Brammersgade",[mk_gbpackinputtype(<METALID>,mk_dimensionsType(10,5,3),20)],0)]
 
 instance variables 
 FinishedCollecting : bool := false;
@@ -32,13 +34,25 @@ updateAddresses() ==
             doneRead : bool := false;
             while not doneRead do
             (
-                def mk_(adrString, gbpackset, objTime) = hd inlines
+                def mk_(adrString, gbpackinput, objtime) = hd inlines
                 in
-                    if objTime <= curtime
+                    if objtime <= curtime
                     then (
-                            GarbageSortingSystem`address_repository.addToAddresses({adrString |-> gbpackset});
-                            inlines := tl inlines; 
-                            doneRead := len inlines = 0;
+                        dcl gtset : set of GarbageType;
+                            for gps in gbpackinput
+                            do
+                            (
+                                cases gps.#1:
+                                <GLASSID> -> gtset:= gtset union {new Glass(mk_dimensionsType(gps.#2.width,gps.#2.length,gps.#2.height), gps.#3)},
+                                <METALID> -> gtset:= gtset union {new Metal(mk_dimensionsType(gps.#2.width,gps.#2.length,gps.#2.height), gps.#3)},
+                                <PAPERID> -> gtset:= gtset union {new Paper(mk_dimensionsType(gps.#2.width,gps.#2.length,gps.#2.height), gps.#3)},
+                                <PLASTICID> -> gtset:= gtset union {new Plastic(mk_dimensionsType(gps.#2.width,gps.#2.length,gps.#2.height), gps.#3)},
+                                others -> skip
+                                end;
+                            );
+                        GarbageSortingSystem`address_repository.addToAddresses({adrString |-> {new GarbagePack(gtset)}});
+                        inlines := tl inlines; 
+                        doneRead := len inlines = 0;
                         )
                     else
                         doneRead := true
@@ -51,7 +65,9 @@ updateAddresses() ==
 
 public Environment : seq of char ==> Environment
 Environment(fname) ==
+(
     def mk_(-,input) = IO`freadval[seq of inline](fname) 
         in
             inlines := input;
+)
 end Environment

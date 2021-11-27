@@ -13,7 +13,7 @@ public
   World : () ==> World
   World() ==
   (
-    env := new Environment("scenario.txt");
+    env := new Environment("scenario2.txt");
   );
   
 public 

@@ -1,0 +1,11 @@
+[
+mk_("Brammersgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 20), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 15), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 20)], 0),
+mk_("Frederiksgade", [mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(1, 5, 3), 20), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 1), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 25)], 0),
+mk_("Frederiksgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(1, 5, 3), 20), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(3, 2, 1), 1), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(10, 5, 3), 25)], 0),
+mk_("Brammersgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 20), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 15), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 20)], 100),
+mk_("Frederiksgade", [mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(1, 5, 3), 20), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 1), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 25)], 100),
+mk_("Frederiksgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(1, 5, 3), 20), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(3, 2, 1), 1), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(10, 5, 3), 25)], 100),
+mk_("Brammersgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 20), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 15), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 20)], 200),
+mk_("Frederiksgade", [mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(1, 5, 3), 20), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 1), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 25)], 200),
+mk_("Frederiksgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(1, 5, 3), 20), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(3, 2, 1), 1), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(10, 5, 3), 25)], 200),
+]

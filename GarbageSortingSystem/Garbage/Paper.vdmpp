@@ -1,7 +1,7 @@
 class Paper is subclass of GarbageType
 
 operations
-public Paper : dimensionsType * nat ==> Paper
+public Paper : GLOBAL`dimensionsType * nat ==> Paper
 Paper(d, w) == 
     atomic 
     (

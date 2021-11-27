@@ -1,7 +1,7 @@
 class GarbageSorter
 
 types 
-    public GarbageMap = map GarbageType`GarbageId to set of GarbageType;
+    public GarbageMap = map GLOBAL`GarbageId to set of GarbageType;
 
 functions
 

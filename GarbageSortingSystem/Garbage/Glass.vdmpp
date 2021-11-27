@@ -1,7 +1,7 @@
 class Glass is subclass of GarbageType
 
 operations
-public Glass : dimensionsType * nat ==> Glass
+public Glass : GLOBAL`dimensionsType * nat ==> Glass
 Glass(d, w) == 
     atomic 
     (

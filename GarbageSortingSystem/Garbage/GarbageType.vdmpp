@@ -3,24 +3,16 @@ class GarbageType
 instance variables
 public weight: nat := 0; 
 inv weight > 0 and weight < 200; -- 200 Kg approx
-protected garbageId : [GarbageId] := nil;
+protected garbageId : [GLOBAL`GarbageId] := nil;
 
 
-public dimensions: [dimensionsType] := nil;
+public dimensions: [GLOBAL`dimensionsType] := nil;
 inv InvDimensions(dimensions)
-
-types
-
-public GarbageId = <GLASSID> | <METALID> | <PAPERID> | <PLASTICID>;
-
-public dimensionsType :: width  : nat
-                        length : nat
-                        height : nat;
 
 functions
 
-private InvDimensions : dimensionsType -> bool
-InvDimensions(mk_dimensionsType(width,length,height)) == 
+private InvDimensions : GLOBAL`dimensionsType -> bool
+InvDimensions(mk_GLOBAL`dimensionsType(width,length,height)) == 
         width < 61 and width > 0 and    -- Less than 61 CM
         length < 51 and width > 0 and   -- Less than 51 CM
         height < 87 and width > 0;      -- Less than 87 CM
@@ -36,7 +28,7 @@ pure public getVolume : () ==> nat
 getVolume() ==
     return dimensions.width*dimensions.length*dimensions.height;
 
-pure public getGarbageId : () ==> GarbageId
+pure public getGarbageId : () ==> GLOBAL`GarbageId
 getGarbageId() ==
     return garbageId;
 

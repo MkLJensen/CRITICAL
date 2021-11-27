@@ -13,15 +13,10 @@ AddressRepository(aMap) ==
 public addToAddresses : map seq of char to set of GarbagePack ==> ()
 addToAddresses(aMap) ==
 (
-    addresses_ := addresses_ munion aMap -- THIS FAILS
-);
-
-public addGarbageToAddress : seq of char * GarbagePack ==> ()
-addGarbageToAddress(address, garbage) ==
-(
-    -- Maybe ensure that address is in the address list TODO Ask PETER About issues with addToAddresses and addGarbageToAddress 
-    addresses_(address) := addresses_(address) union {garbage}
-
+    for all addr in set dom aMap do
+    (
+        addresses_(addr) := addresses_(addr) union aMap(addr)
+    )
 );
 
 -- TODO POST AND PRECONDITION THAT ADDRESS IS IN MAP
@@ -36,5 +31,14 @@ getAddresses() ==
 (
     return addresses_;
 );
+
+
+-- public addGarbageToAddress : seq of char * GarbagePack ==> ()
+-- addGarbageToAddress(address, garbage) ==
+-- (
+--     -- Maybe ensure that address is in the address list TODO Ask PETER About issues with addToAddresses and addGarbageToAddress 
+--     addresses_(address) := addresses_(address) union {garbage}
+
+-- );
 
 end AddressRepository

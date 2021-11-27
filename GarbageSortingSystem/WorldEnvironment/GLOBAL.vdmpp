@@ -9,6 +9,14 @@ public GARBAGETRUCK_MAX_VOLUME : nat := 300; --cm^3
 types 
     public Time = nat;
 
+    public gbpackinputtype = GarbageId * dimensionsType * nat;
+
+    public GarbageId = <GLASSID> | <METALID> | <PAPERID> | <PLASTICID>;
+
+    public dimensionsType :: width  : nat
+                            length : nat
+                            height : nat;
+
 functions
 public SumDimensionGarbagePack: set of GarbageType +> nat
 SumDimensionGarbagePack(s) ==
