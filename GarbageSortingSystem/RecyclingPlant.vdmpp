@@ -24,8 +24,24 @@ Step() == (
 private handleGarbageMap : GarbageSorter`GarbageMap ==> ()
 handleGarbageMap(gpMap) ==
 (
-    skip
-    -- Do though the sorted Garbage Map and print weight and dimenion of each type
+    IO`println("Sorted Garbage: ");
+    for all gptype in set dom gpMap do
+    (
+        cases gptype:
+            <GLASSID> -> IO`println("Glass: "),
+            <METALID> -> IO`println("Metal: "),
+            <PAPERID> -> IO`println("Paper: "),
+            <PLASTICID> -> IO`println("Plastic: "),
+            others -> skip
+        end;
+
+        -- Set can abstract the maps set as a Large GarbagePack, therefore these functions work
+        IO`println("Weight");
+        IO`println(GLOBAL`SumWeightGarbagePack(gpMap(gptype)));
+        IO`println("Volume");
+        IO`println(GLOBAL`SumDimensionGarbagePack(gpMap(gptype)));
+
+    );
 );
 
 public addFilledTrucksToPlant : set of GarbageTruck ==> ()

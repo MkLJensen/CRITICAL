@@ -17,26 +17,41 @@ Step() ==
     sendTrucksToPlant(fulltrucks);
 );
 
+
+-- Will go through trucks, and then it will remove the trucks from the instance variable 
+-- set if they are full, and add them to a local variable that will be returned
 private scanForFullTrucks : () ==> set of GarbageTruck
 scanForFullTrucks() ==
 (
     dcl fulltrucks : set of GarbageTruck := {t | t in set trucks & t.isTruckFull()};
     trucks := trucks \ {t | t in set trucks & t.isTruckFull()};
     return fulltrucks;
-    -- TODO Will go through trucks, and then it will remove the trucks from the instance variable 
-    -- set if they are full, and add them to a local variable that will be returned
 );
 
 private fillTrucks : () ==> ()
 fillTrucks() ==
 (
-    for all addrs in set dom GarbageSortingSystem`address_repository -- Addrs is seq of char with address
+    for all addrs in set dom GarbageSortingSystem`address_repository.getAddresses() -- Addrs is seq of char with address
     do
         (
-            dcl gbFromAddr : set of GarbagePack := GarbageSortingSystem`address_repository.getGarbageFromAddress(addrs);
-            
-        )
-    -- TODO Fill garbage at one address in all trucks
+        dcl gbFromAddr : set of GarbagePack := GarbageSortingSystem`address_repository.getGarbageFromAddress(addrs); -- All garbage from address
+            for all gbs in set gbFromAddr
+            do
+            (
+                for all t in set trucks                             -- One Truck
+                do
+                    (
+                        while   (not t.isTruckFull()) 
+                                or (gbFromAddr <> {}) 
+                                or (not t.willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume()))
+                        do
+                            (
+                                t.addToTruck(gbs);
+                                gbFromAddr := gbFromAddr \ {gbs};
+                            );
+                    );
+            )
+        );
 );
 
 

@@ -17,11 +17,15 @@ getGarbagePack() ==
     return garbageSet;
 );
 
+pure public getPackWeight : () ==> nat
+getPackWeight() == 
+(
+    return SumWeightGarbagePack(getGarbagePack());
+);
 
-
-
-
-
+pure public getPackVolume : () ==> nat
+getPackVolume() ==
+    return SumDimensionGarbagePack(getGarbagePack())
 
 
 

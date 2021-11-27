@@ -10,7 +10,7 @@ private checkTruckWeight : set of GarbagePack -> bool
 checkTruckWeight(gpset) ==
 (
     forall gps in set gpset & 
-        SumWeightGarbagePack(gps.getGarbagePack()) > 1000
+    SumWeightGarbagePack(gps.getGarbagePack()) > 1000
 );
 
 private checkTruckDimension : set of GarbagePack -> bool
@@ -20,22 +20,13 @@ checkTruckDimension(gpset) ==
         SumDimensionGarbagePack(gps.getGarbagePack()) > 300
 );
 
-SumDimensionGarbagePack: set of GarbageType +> nat
-SumDimensionGarbagePack(s) ==
-    if s = {}                         
-    then 0                                         
-    else let e in set s in
-        e.getVolume() + SumDimensionGarbagePack(s \ {e})
-measure card s;
 
-SumWeightGarbagePack: set of GarbageType +> nat
-SumWeightGarbagePack(s) ==
-    if s = {}                         
-    then 0                                         
-    else let e in set s in
-        e.getWeight() + SumWeightGarbagePack(s \ {e})
-measure card s;
-
+public willBeOverfilled : set of GarbagePack * nat * nat -> bool
+willBeOverfilled(gpset, w, vol) ==
+(
+    forall gps in set gpset & 
+        (SumWeightGarbagePack(gps.getGarbagePack()) + w) > 1000 and (SumDimensionGarbagePack(gps.getGarbagePack()) + vol) > 300
+);
 
 
 operations
@@ -62,14 +53,6 @@ addToTruck(gp) ==
 (
     garbagePackSet_ := garbagePackSet_ union {gp};
 );
-
-
-
--- pure public getTruckId : () ==> seq of char
--- getTruckId() == 
--- (
---     return garbageTruckId_;
--- );
 
 
 end GarbageTruck

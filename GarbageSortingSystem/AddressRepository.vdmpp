@@ -28,7 +28,7 @@ addGarbageToAddress(address, garbage) ==
 public getGarbageFromAddress : seq of char ==> set of GarbagePack
 getGarbageFromAddress(addr) ==
 (
-    addresses_(addr)
+    return addresses_(addr)
 );
 
 public getAddresses : () ==> map seq of char to set of GarbagePack

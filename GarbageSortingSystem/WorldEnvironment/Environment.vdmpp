@@ -7,8 +7,6 @@ inline  = seq of char * set of GarbagePack * Time;
 instance variables 
 FinishedCollecting : bool := false;
 
-io : IO := new IO();
-
 inlines     : seq of inline  := [];
 
 operations
@@ -53,8 +51,7 @@ updateAddresses() ==
 
 public Environment : seq of char ==> Environment
 Environment(fname) ==
-     def mk_(-,input) = io.freadval[seq of inline](fname) 
+    def mk_(-,input) = IO`freadval[seq of inline](fname) 
         in
             inlines := input;
-
 end Environment

@@ -9,5 +9,30 @@ public GARBAGETRUCK_MAX_VOLUME : nat := 300; --cm^3
 types 
     public Time = nat;
 
+functions
+public SumDimensionGarbagePack: set of GarbageType +> nat
+SumDimensionGarbagePack(s) ==
+    if s = {}                         
+    then 0                                         
+    else let e in set s in
+        e.getVolume() + SumDimensionGarbagePack(s \ {e})
+measure card s;
+
+public SumWeightGarbagePack: set of GarbageType +> nat
+SumWeightGarbagePack(s) ==
+    if s = {}                         
+    then 0                                         
+    else let e in set s in
+        e.getWeight() + SumWeightGarbagePack(s \ {e})
+measure card s;
+
+
+public SumSet: set of nat -> nat
+SumSet(s) ==
+    if s = {}
+    then 0
+    else let e in set s in
+        e + SumSet(s\{e})
+measure card s;
 
 end GLOBAL

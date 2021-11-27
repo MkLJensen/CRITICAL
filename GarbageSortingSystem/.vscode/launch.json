@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch VDM Debug from myHeartClass`Run()",
+            "name": "Launch VDM Debug from World`Run()",
             "type": "vdm",
             "request": "launch",
             "noDebug": false,
             "defaultName": null,
-            "command": "print new Plastic(mk_dimensionsType(45, 45, 45), 100)"
+            "command": "print new World().Run()"
         }
     ]
 }
