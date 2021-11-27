@@ -24,6 +24,13 @@ addGarbageToAddress(address, garbage) ==
 
 );
 
+-- TODO POST AND PRECONDITION THAT ADDRESS IS IN MAP
+public getGarbageFromAddress : seq of char ==> set of GarbagePack
+getGarbageFromAddress(addr) ==
+(
+    addresses_(addr)
+);
+
 public getAddresses : () ==> map seq of char to set of GarbagePack
 getAddresses() ==
 (

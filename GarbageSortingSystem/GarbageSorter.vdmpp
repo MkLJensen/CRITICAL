@@ -10,9 +10,6 @@ MapCombine(m1, m2) == (
     { gid |-> m1(gid) union m2(gid) | gid in set dom m1 }
 );
 
-
-
-
 public sortSetofGarbagePack: set of GarbageType -> GarbageMap
 sortSetofGarbagePack(s) == 
     if s = {}

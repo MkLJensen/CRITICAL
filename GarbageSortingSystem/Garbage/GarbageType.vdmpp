@@ -36,12 +36,22 @@ pure public getVolume : () ==> nat
 getVolume() ==
     return dimensions.width*dimensions.length*dimensions.height;
 
-pure public getDimensions : () ==> dimensionsType
-getDimensions() == 
-    return dimensions;
-
 pure public getGarbageId : () ==> GarbageId
 getGarbageId() ==
     return garbageId;
+
+
+
+
+
+
+
+
+
+
+
+-- pure public getDimensions : () ==> dimensionsType
+-- getDimensions() == 
+--     return dimensions;
 
 end GarbageType

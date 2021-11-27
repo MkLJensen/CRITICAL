@@ -1,13 +1,13 @@
 class RecyclingProcessRepository
 
-operations 
+-- operations 
 
-public handleGarbageMap : GarbageSorter`GarbageMap ==> ()
-handleGarbageMap(gpMap) ==
-(
-    skip
-    -- Do though the sorted Garbage Map and print weight and dimenion of each type
-);
+-- public handleGarbageMap : GarbageSorter`GarbageMap ==> ()
+-- handleGarbageMap(gpMap) ==
+-- (
+--     skip
+--     -- Do though the sorted Garbage Map and print weight and dimenion of each type
+-- );
 
 end RecyclingProcessRepository
 

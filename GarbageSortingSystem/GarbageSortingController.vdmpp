@@ -30,7 +30,12 @@ scanForFullTrucks() ==
 private fillTrucks : () ==> ()
 fillTrucks() ==
 (
-    skip
+    for all addrs in set dom GarbageSortingSystem`address_repository -- Addrs is seq of char with address
+    do
+        (
+            dcl gbFromAddr : set of GarbagePack := GarbageSortingSystem`address_repository.getGarbageFromAddress(addrs);
+            
+        )
     -- TODO Fill garbage at one address in all trucks
 );
 

@@ -11,17 +11,32 @@ GarbagePack(garbage) ==
     garbageSet := garbage;
 );
 
-public addToGarbagePack : GarbageType ==> ()
-addToGarbagePack(gp) ==
-(
-    garbageSet := garbageSet union {gp};
-);
-
 pure public getGarbagePack : () ==> set of GarbageType
 getGarbagePack() == 
 (
     return garbageSet;
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- public addToGarbagePack : GarbageType ==> ()
+-- addToGarbagePack(gp) ==
+-- (
+--     garbageSet := garbageSet union {gp};
+-- );
+
 
 
 

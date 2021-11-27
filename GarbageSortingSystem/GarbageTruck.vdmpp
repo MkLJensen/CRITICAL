@@ -57,16 +57,19 @@ getTruckGarbage() ==
     return garbagePackSet_;
 );
 
-pure public getTruckId : () ==> seq of char
-getTruckId() == 
-(
-    return garbageTruckId_;
-);
-
 public addToTruck : GarbagePack ==> ()
 addToTruck(gp) ==
 (
     garbagePackSet_ := garbagePackSet_ union {gp};
 );
+
+
+
+-- pure public getTruckId : () ==> seq of char
+-- getTruckId() == 
+-- (
+--     return garbageTruckId_;
+-- );
+
 
 end GarbageTruck

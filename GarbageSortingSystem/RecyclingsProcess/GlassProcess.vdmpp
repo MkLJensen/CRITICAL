@@ -8,7 +8,7 @@ action(o) == (
     IO`print("Recycling Glass with Weight: ");
     IO`print(o.getWeight());
     IO`print("With Dimensions: ");
-    IO`print(o.getDimensions());
+    IO`print(o.getVolume());
     IO`print("Smelting .... ");
 );
 
