@@ -26,6 +26,12 @@ getGarbageFromAddress(addr) ==
     return addresses_(addr)
 );
 
+public removeGarbageFromAddress : seq of char * GarbagePack ==> ()
+removeGarbageFromAddress(addr, GarbagePack) ==
+(
+    addresses_(addr) := addresses_(addr) \ {GarbagePack};
+);
+
 public getAddresses : () ==> map seq of char to set of GarbagePack
 getAddresses() ==
 (
