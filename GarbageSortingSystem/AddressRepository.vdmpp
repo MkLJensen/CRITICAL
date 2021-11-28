@@ -1,6 +1,7 @@
 class AddressRepository is subclass of GLOBAL
 
 instance variables
+    -- TODO INVARIANT ON CHARACTERS MAYBE forall in set dom addresses & forall etc...
     addresses_ : map seq of char to set of GarbagePack := {|->};
 
 operations
@@ -10,6 +11,8 @@ AddressRepository(aMap) ==
     addresses_ := aMap;
 );
 
+
+-- POST and PRE Conditions either pre condition or and show that it is important
 public addToAddresses : map seq of char to set of GarbagePack ==> ()
 addToAddresses(aMap) ==
 (
@@ -19,32 +22,23 @@ addToAddresses(aMap) ==
     )
 );
 
--- TODO POST AND PRECONDITION THAT ADDRESS IS IN MAP
-public getGarbageFromAddress : seq of char ==> set of GarbagePack
+pure public getGarbageFromAddress : seq of char ==> set of GarbagePack
 getGarbageFromAddress(addr) ==
 (
     return addresses_(addr)
 );
 
+-- POST Items have been removed
 public removeGarbageFromAddress : seq of char * GarbagePack ==> ()
 removeGarbageFromAddress(addr, GarbagePack) ==
 (
     addresses_(addr) := addresses_(addr) \ {GarbagePack};
 );
 
-public getAddresses : () ==> map seq of char to set of GarbagePack
+pure public getAddresses : () ==> map seq of char to set of GarbagePack
 getAddresses() ==
 (
     return addresses_;
 );
-
-
--- public addGarbageToAddress : seq of char * GarbagePack ==> ()
--- addGarbageToAddress(address, garbage) ==
--- (
---     -- Maybe ensure that address is in the address list TODO Ask PETER About issues with addToAddresses and addGarbageToAddress 
---     addresses_(address) := addresses_(address) union {garbage}
-
--- );
 
 end AddressRepository

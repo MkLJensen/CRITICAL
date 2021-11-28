@@ -8,7 +8,7 @@ public Step : () ==> ()
 Step() == 
 (
     dcl fulltrucks : set of GarbageTruck;
-    fillTrucks(); -- HERE WE FAIL ON 2. RUN
+    fillTrucks();
     fulltrucks := scanForFullTrucks();
     sendTrucksToPlant(fulltrucks);
 );
@@ -32,43 +32,24 @@ scanForFullTrucks() ==
 private fillTrucks : () ==> ()
 fillTrucks() ==
 (
-    dcl test : map seq of char to set of GarbagePack := GarbageSortingSystem`address_repository.getAddresses();
-    for all addrs in set dom GarbageSortingSystem`address_repository.getAddresses() -- Addrs is seq of char with address
+    for all addrs in set dom GarbageSortingSystem`address_repository.getAddresses()
     do
         (
-        dcl gbFromAddr : set of GarbagePack := GarbageSortingSystem`address_repository.getGarbageFromAddress(addrs); -- All garbage from address
+        dcl gbFromAddr : set of GarbagePack := GarbageSortingSystem`address_repository.getGarbageFromAddress(addrs);
             for all gbs in set gbFromAddr
             do
             (
-                for all t in set trucks                             -- One Truck
+                for all t in set trucks
                 do
                     (
-                        if ((not t.isTruckFull())  -- SHOULD THIS BE DONE WITH IF LOOP
+                        if ((not t.isTruckFull()) 
                             and (gbFromAddr <> {}) 
-                            and (not GarbageTruck`willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume()))) then
+                            and (not GarbageTruck`willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume()))) then -- some trucks are getting overfilled
                             (
                                 t.addToTruck(gbs);
                                 gbFromAddr := gbFromAddr \ {gbs};
-                                -- we should prob just update address_repository with gbFromAddr
-                                -- Something like
-                                -- GarbageSortingSystem`address_repository.getGarbageFromAddress(addrs) := gbFromAddr;
                                 GarbageSortingSystem`address_repository.removeGarbageFromAddress(addrs, gbs);
-                                -- WE GOTTA REMOVE GARBAGE FROM ADDRESS ASWELL
                             )
-
-                        -- while   ((not t.isTruckFull())  -- SHOULD THIS BE DONE WITH IF LOOP
-                        --         and (gbFromAddr <> {}) 
-                        --         and (not GarbageTruck`willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume()))) -- THIS IS NOT WORKING AS INTENTED
-                        -- do
-                        --     (
-                        --         t.addToTruck(gbs);
-                        --         gbFromAddr := gbFromAddr \ {gbs};
-                        --         -- we should prob just update address_repository with gbFromAddr
-                        --         -- Something like
-                        --         -- GarbageSortingSystem`address_repository.getGarbageFromAddress(addrs) := gbFromAddr;
-                        --         GarbageSortingSystem`address_repository.removeGarbageFromAddress(addrs, gbs);
-                        --         -- WE GOTTA REMOVE GARBAGE FROM ADDRESS ASWELL
-                        --     );
                     );
             )
         );

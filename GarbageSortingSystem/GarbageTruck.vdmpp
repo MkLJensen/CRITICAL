@@ -2,7 +2,9 @@ class GarbageTruck is subclass of GLOBAL
 
 instance variables
 -- TODO ADD INVARIANT
-garbageTruckId_ : seq of char := "Undefined";
+garbageTruckId_ : [seq of char] := nil;
+
+-- Invariant for weight of truck if time can be done
 garbagePackSet_ : set of GarbagePack := {};
 
 functions
@@ -36,6 +38,7 @@ willBeOverfilled(gpset, w, vol) ==
 );
 
 
+-- POST Condition, ID it not nil anymore
 operations
 public GarbageTruck : seq of char ==> GarbageTruck
 GarbageTruck(id) == 
