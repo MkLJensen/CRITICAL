@@ -2,9 +2,11 @@
 mk_("Brammersgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 100), mk_(<GLASSID>,mk_GLOBAL`dimensionsType(3, 2, 1), 150), mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 100)], 0),
 mk_("Frederiksgade", [mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(10, 5, 3), 120), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 115), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 120)], 0),
 mk_("Odensegade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 105), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(3, 2, 1), 154), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 104)], 0),
+
 mk_("Brammersgade", [mk_(<GLASSID>,mk_GLOBAL`dimensionsType(10, 5, 3), 110), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 151), mk_(<GLASSID>,mk_GLOBAL`dimensionsType(10, 5, 3), 102)], 100),
 mk_("Frederiksgade", [mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 107), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 115), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 120)], 100),
 mk_("Brammersgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 101), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(3, 2, 1), 151), mk_(<GLASSID>,mk_GLOBAL`dimensionsType(10, 5, 3), 120)], 100),
+
 mk_("Odensegade", [mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(10, 5, 3), 102), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 153), mk_(<PAPERID>,mk_GLOBAL`dimensionsType(10, 5, 3), 120)], 200),
 mk_("Frederiksgade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 104), mk_(<GLASSID>,mk_GLOBAL`dimensionsType(3, 2, 1), 153), mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 120)], 200),
 mk_("Odensegade", [mk_(<METALID>,mk_GLOBAL`dimensionsType(10, 5, 3), 110), mk_(<PLASTICID>,mk_GLOBAL`dimensionsType(3, 2, 1), 153), mk_(<GLASSID>,mk_GLOBAL`dimensionsType(10, 5, 3), 120)], 200)

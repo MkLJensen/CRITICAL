@@ -70,7 +70,6 @@ fillTrucks() ==
                         --         -- WE GOTTA REMOVE GARBAGE FROM ADDRESS ASWELL
                         --     );
                     );
-            -- Hack is prob to remove here, Better to remove above
             )
         );
 );
