@@ -9,23 +9,30 @@ functions
 private checkTruckWeight : set of GarbagePack -> bool
 checkTruckWeight(gpset) ==
 (
-    forall gps in set gpset & 
-    SumWeightGarbagePack(gps.getGarbagePack()) > 1000
+    GLOBAL`SumSet({SumWeightGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) > 1000
+
+    -- forall gps in set gpset & 
+    --     SumWeightGarbagePack(gps.getGarbagePack()) > 1000 -- TODO Error HERE, check on Garbagepack and no set of 
 );
 
 private checkTruckDimension : set of GarbagePack -> bool
 checkTruckDimension(gpset) ==
 (
-    forall gps in set gpset & 
-        SumDimensionGarbagePack(gps.getGarbagePack()) > 300
+    GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) > 300
+
+    -- forall gps in set gpset & 
+    --     SumDimensionGarbagePack(gps.getGarbagePack()) > 300 -- TODO Error HERE, check on Garbagepack and no set of
 );
 
 
 public willBeOverfilled : set of GarbagePack * nat * nat -> bool
 willBeOverfilled(gpset, w, vol) ==
 (
-    forall gps in set gpset & 
-        (SumWeightGarbagePack(gps.getGarbagePack()) + w) > 1000 and (SumDimensionGarbagePack(gps.getGarbagePack()) + vol) > 300
+    GLOBAL`SumSet({SumWeightGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) > 1000 
+    and GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + vol > 300
+
+    -- forall gps in set gpset & 
+    --     (SumWeightGarbagePack(gps.getGarbagePack()) + w) > 1000 and (SumDimensionGarbagePack(gps.getGarbagePack()) + vol) > 300
 );
 
 
@@ -36,7 +43,7 @@ GarbageTruck(id) ==
     garbageTruckId_ := id;
 );
 
-public isTruckFull : () ==> bool
+pure public isTruckFull : () ==> bool
 isTruckFull() ==
 (
     return checkTruckWeight(getTruckGarbage()) and checkTruckDimension(getTruckGarbage());
@@ -54,5 +61,10 @@ addToTruck(gp) ==
     garbagePackSet_ := garbagePackSet_ union {gp};
 );
 
+public emptyTruck : () ==> ()
+emptyTruck() == 
+(
+    garbagePackSet_ := {}
+)
 
 end GarbageTruck

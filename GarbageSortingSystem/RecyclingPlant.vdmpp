@@ -13,11 +13,13 @@ sortedGarbage : GarbageSorter`GarbageMap := {   <GLASSID>   |-> {},
 
 operations
 
--- Sort the trucks, and then show the sorted garbage
 public Step : () ==> ()
 Step() == (
-    dcl sortedMap : GarbageSorter`GarbageMap := sortAllTrucks();
-        handleGarbageMap(sortedMap);
+    if card rcTrucks > 0 then
+    (
+        dcl sortedMap : GarbageSorter`GarbageMap := sortAllTrucks();
+            handleGarbageMap(sortedMap);
+    )
 );
 
 
@@ -52,15 +54,20 @@ private sortAllTrucks : () ==> GarbageSorter`GarbageMap
 sortAllTrucks() == (
     for all t in set rcTrucks
         do 
-            let x = getSeqOfIndividualGarbageFromTruck(t) in
+        (
+            let x = getSetOfIndividualGarbageFromTruck(t) in
                 sortedGarbage := GarbageSorter`MapCombine(sortedGarbage,GarbageSorter`sortSetofGarbagePack(x));
+            t.emptyTruck();
+            GarbageSortingSystem`garbageSortingController.addTrucks({t});
+            rcTrucks := rcTrucks \ {t};
+        );
     return sortedGarbage 
 );
 
 
 functions
-private getSeqOfIndividualGarbageFromTruck : GarbageTruck -> set of GarbageType
-getSeqOfIndividualGarbageFromTruck(gbTruck) == (
+private getSetOfIndividualGarbageFromTruck : GarbageTruck -> set of GarbageType
+getSetOfIndividualGarbageFromTruck(gbTruck) == (
     dunion {i.getGarbagePack() | i in set gbTruck.getTruckGarbage()}
 );
 

@@ -2,8 +2,8 @@ class GLOBAL
 
 instance variables
 
-public GARBAGETRUCK_MAX_WEIGHT : nat := 1000; --kg
-public GARBAGETRUCK_MAX_VOLUME : nat := 300; --cm^3
+--public GARBAGETRUCK_MAX_WEIGHT : nat := 1000; --kg
+--public GARBAGETRUCK_MAX_VOLUME : nat := 300; --cm^3
 
 
 types 

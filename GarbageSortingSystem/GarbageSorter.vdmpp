@@ -5,10 +5,26 @@ types
 
 functions
 
+
+--{<GLASS> |-> {x}}
+--{<GLASS> |-> {y}}
+--{<GLASS> |->{y, x}}
+-- If domaine of m1, is in m2, then union and add too same dom
+-- else add both m1 and m2 to map, with each different dom
 public MapCombine : GarbageMap * GarbageMap -> GarbageMap
-MapCombine(m1, m2) == (
-    { gid |-> m1(gid) union m2(gid) | gid in set dom m1 }
+MapCombine(m1, m2) ==
+(
+    {id |-> m1(id) union m2(id) | id in set dom m1 inter dom m2} munion 
+    {id |-> m1(id) | id in set dom m1 \ dom m2} munion 
+    {id |-> m2(id) | id in set dom m2 \ dom m1}
 );
+
+
+-- public MapCombine : GarbageMap * GarbageMap -> GarbageMap
+-- MapCombine(m1, m2) == (
+--     {gid |-> m1(gid) union m2(gid) | gid in set dom m1} -- gid in set dom m1, changed to m2
+-- );
+
 
 public sortSetofGarbagePack: set of GarbageType -> GarbageMap
 sortSetofGarbagePack(s) == 
