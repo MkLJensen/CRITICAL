@@ -1,0 +1,19 @@
+class GarbageTruckTest is subclass of GLOBAL, TestCase
+
+
+--new Metal(mk_dimensionsType(5,8,7), 100)
+--new Paper(mk_dimensionsType(5,8,7), 100)
+--new Glass(mk_dimensionsType(5,8,7), 100)
+--new Plastic(mk_dimensionsType(5,8,7), 100)
+
+
+values 
+gP1 : GarbagePack = new GarbagePack({new Metal(mk_dimensionsType(5,8,7), 100), 
+                                     new Paper(mk_dimensionsType(3,4,3), 140),
+                                     new Glass(mk_dimensionsType(6,5,1), 138),
+                                     new Plastic(mk_dimensionsType(7,8,4), 65)
+                                     });
+
+
+
+end GarbageTruckTest

@@ -24,8 +24,8 @@ addTrucks(gtset) ==
 private scanForFullTrucks : () ==> set of GarbageTruck
 scanForFullTrucks() ==
 (
-    dcl fulltrucks : set of GarbageTruck := {t | t in set trucks & t.isTruckFull()};
-    trucks := trucks \ {t | t in set trucks & t.isTruckFull()};
+    dcl fulltrucks : set of GarbageTruck := {t | t in set trucks & t.hasTruckBeenFilled()};
+    trucks := trucks \ {t | t in set trucks & t.hasTruckBeenFilled()};
     return fulltrucks;
 );
 
@@ -49,6 +49,10 @@ fillTrucks() ==
                                 t.addToTruck(gbs);
                                 gbFromAddr := gbFromAddr \ {gbs};
                                 GarbageSortingSystem`address_repository.removeGarbageFromAddress(addrs, gbs);
+                            )
+                            else if(GarbageTruck`willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume())) then 
+                            (
+                                t.truckHasBeenFilled();
                             )
                     );
             )

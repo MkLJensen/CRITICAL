@@ -40,7 +40,8 @@ SumSet(s) ==
     if s = {}
     then 0
     else let e in set s in
-        e + SumSet(s\{e})
+        e + SumSet(s \ {e})
 measure card s;
+
 
 end GLOBAL

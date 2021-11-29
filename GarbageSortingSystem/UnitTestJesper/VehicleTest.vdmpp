@@ -1,62 +1,62 @@
-class VehicleTest
-  is subclass of GLOBAL, TestCase
+-- class VehicleTest
+--   is subclass of GLOBAL, TestCase
 
-values
-lightNorthTest : LightSignal = new LightSignal(<Green>, <North>);
-lightSouthTest : LightSignal = new LightSignal(<Green>, <South>);
-lightWestTest : LightSignal = new LightSignal(<Red>, <West>);
-lightEastTest : LightSignal = new LightSignal(<Red>, <East>);
-lightMapTest : map Cardinal_direction to set of LightSignal = {<North> |-> {lightNorthTest, lightSouthTest}, 
-                                                               <South> |-> {lightNorthTest, lightSouthTest},
-                                                               <West> |-> {lightWestTest, lightEastTest}, 
-                                                               <East> |-> {lightWestTest, lightEastTest}};
+-- values
+-- lightNorthTest : LightSignal = new LightSignal(<Green>, <North>);
+-- lightSouthTest : LightSignal = new LightSignal(<Green>, <South>);
+-- lightWestTest : LightSignal = new LightSignal(<Red>, <West>);
+-- lightEastTest : LightSignal = new LightSignal(<Red>, <East>);
+-- lightMapTest : map Cardinal_direction to set of LightSignal = {<North> |-> {lightNorthTest, lightSouthTest}, 
+--                                                                <South> |-> {lightNorthTest, lightSouthTest},
+--                                                                <West> |-> {lightWestTest, lightEastTest}, 
+--                                                                <East> |-> {lightWestTest, lightEastTest}};
 
-testSpeed : Speed = 18;
-testAcc : Acc = 2;
-testDistance : Distance = 60;
+-- testSpeed : Speed = 18;
+-- testAcc : Acc = 2;
+-- testDistance : Distance = 60;
 
-instance variables
-private stepSize : Timer`Time;
+-- instance variables
+-- private stepSize : Timer`Time;
 
-operations
-  public VehicleTest: Timer`Time * seq of char ==> VehicleTest
-  VehicleTest(sS, nm) == (stepSize := sS; name := nm;);
+-- operations
+--   public VehicleTest: Timer`Time * seq of char ==> VehicleTest
+--   VehicleTest(sS, nm) == (stepSize := sS; name := nm;);
 
-  protected SetUp: () ==> ()
-  SetUp () == skip;
+--   protected SetUp: () ==> ()
+--   SetUp () == skip;
 
-  protected RunTest: () ==> ()
-  RunTest () == 
-    ( dcl tc1 : Vehicle := new Vehicle(<North>, MAX_SPEED, testSpeed, testAcc, testDistance),
-          tc2 : Vehicle := new Vehicle(<West>, MAX_SPEED, testSpeed, testAcc, testDistance),
-          tc3 : Vehicle := new Vehicle(<North>, MAX_SPEED, testSpeed, testAcc, 0),
-          tc4 : Vehicle := new Vehicle(<West>, MAX_SPEED, testSpeed, testAcc, 1);
-      tc1.step(lightMapTest, stepSize, 1);
-      AssertTrue(tc1.getCardinalDir() = <North>);
-      AssertTrue(tc1.getSpeed() = testSpeed + (testAcc*stepSize));
-      AssertTrue(tc1.getDistance() = testDistance - ((testSpeed + (testAcc*stepSize))*stepSize));
-      AssertTrue(tc1.getDone() = false);
+--   protected RunTest: () ==> ()
+--   RunTest () == 
+--     ( dcl tc1 : Vehicle := new Vehicle(<North>, MAX_SPEED, testSpeed, testAcc, testDistance),
+--           tc2 : Vehicle := new Vehicle(<West>, MAX_SPEED, testSpeed, testAcc, testDistance),
+--           tc3 : Vehicle := new Vehicle(<North>, MAX_SPEED, testSpeed, testAcc, 0),
+--           tc4 : Vehicle := new Vehicle(<West>, MAX_SPEED, testSpeed, testAcc, 1);
+--       tc1.step(lightMapTest, stepSize, 1);
+--       AssertTrue(tc1.getCardinalDir() = <North>);
+--       AssertTrue(tc1.getSpeed() = testSpeed + (testAcc*stepSize));
+--       AssertTrue(tc1.getDistance() = testDistance - ((testSpeed + (testAcc*stepSize))*stepSize));
+--       AssertTrue(tc1.getDone() = false);
 
-      tc2.step(lightMapTest, stepSize, 1);
-      AssertTrue(tc2.getCardinalDir() = <West>);
-      AssertTrue(tc2.getSpeed() = testSpeed + (testAcc*stepSize));
-      AssertTrue(tc2.getDistance() = testDistance - ((testSpeed + (testAcc*stepSize))*stepSize));
-      AssertTrue(tc2.getDone() = false);
+--       tc2.step(lightMapTest, stepSize, 1);
+--       AssertTrue(tc2.getCardinalDir() = <West>);
+--       AssertTrue(tc2.getSpeed() = testSpeed + (testAcc*stepSize));
+--       AssertTrue(tc2.getDistance() = testDistance - ((testSpeed + (testAcc*stepSize))*stepSize));
+--       AssertTrue(tc2.getDone() = false);
 
-      tc3.step(lightMapTest, stepSize, 1);
-      AssertTrue(tc3.getCardinalDir() = <North>);
-      AssertTrue(tc3.getSpeed() = testSpeed + (testAcc*stepSize));
-      AssertTrue(tc3.getDistance() = 0);
-      AssertTrue(tc3.getDone() = true);
+--       tc3.step(lightMapTest, stepSize, 1);
+--       AssertTrue(tc3.getCardinalDir() = <North>);
+--       AssertTrue(tc3.getSpeed() = testSpeed + (testAcc*stepSize));
+--       AssertTrue(tc3.getDistance() = 0);
+--       AssertTrue(tc3.getDone() = true);
   
-      tc4.step(lightMapTest, stepSize, 1);
-      AssertTrue(tc4.getCardinalDir() = <West>);
-      AssertTrue(tc4.getSpeed() = 0);
-      AssertTrue(tc4.getDistance() = 1);
-      AssertTrue(tc4.getDone() = false);
-      );
+--       tc4.step(lightMapTest, stepSize, 1);
+--       AssertTrue(tc4.getCardinalDir() = <West>);
+--       AssertTrue(tc4.getSpeed() = 0);
+--       AssertTrue(tc4.getDistance() = 1);
+--       AssertTrue(tc4.getDone() = false);
+--       );
 
-  protected TearDown: () ==> ()
-  TearDown () == skip;
+--   protected TearDown: () ==> ()
+--   TearDown () == skip;
 
-end VehicleTest
+-- end VehicleTest

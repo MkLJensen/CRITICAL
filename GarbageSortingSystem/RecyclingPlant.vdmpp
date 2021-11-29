@@ -26,7 +26,7 @@ Step() == (
 private handleGarbageMap : GarbageSorter`GarbageMap ==> ()
 handleGarbageMap(gpMap) ==
 (
-    IO`println("Sorted Garbage: ");
+    IO`printf("Sorted Garbage at time %s: \r\n", [World`timer.GetTime()]);
     for all gptype in set dom gpMap do
     (
         cases gptype:
