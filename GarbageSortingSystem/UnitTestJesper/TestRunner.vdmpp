@@ -1,0 +1,13 @@
+class TestRunner
+
+operations
+  public Run: () ==> ()
+  Run () == 
+  ( dcl t : TestSuite := new TestSuite(),
+  vt : VehicleTest := new VehicleTest(0.25, "Vehicle unittest"), 
+  snt : SensorTest := new SensorTest("Sensor unittest"); 
+  t.AddTest(vt);
+  t.AddTest(snt);
+  t.Run())
+
+end TestRunner

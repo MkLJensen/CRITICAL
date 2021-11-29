@@ -11,6 +11,14 @@
             "noDebug": false,
             "defaultName": null,
             "command": "print new World().Run()"
+        },
+        {
+            "name": "Launch TestRunner",
+            "type": "vdm",
+            "request": "launch",
+            "noDebug": false,
+            "defaultName": null,
+            "command": "print new TestRunner().Run()"
         }
     ]
 }
