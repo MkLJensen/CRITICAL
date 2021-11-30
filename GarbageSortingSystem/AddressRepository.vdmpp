@@ -10,7 +10,7 @@ private InvAdressID : map seq of char to set of GarbagePack* set of char -> bool
 InvAdressID(addr, invalidChars) == 
     forall adr in set dom addr &
         forall s in seq adr &
-                forall ch in set invalidChars & s <> ch;
+            forall ch in set invalidChars & s <> ch;
 
 
 operations
@@ -30,6 +30,7 @@ addToAddresses(aMap) ==
 )
 pre forall aP in set dom aMap & 
     exists1 p in set dom addresses_ & aP = p
+
 -- Dunion can be used because objects are used and therefore parts of the set wont be removed if they are the same.
 post forall gR in set dunion rng aMap & 
     exists1 p in set dunion rng addresses_ & p = gR;

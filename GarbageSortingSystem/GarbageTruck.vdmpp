@@ -39,8 +39,6 @@ willBeOverfilled(gpset, w, vol) ==
     or GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + vol >= GARBAGETRUCK_MAX_VOLUME
 );
 
-
--- POST Condition, ID it not nil anymore
 operations
 public GarbageTruck : seq of char ==> GarbageTruck
 GarbageTruck(id) == 

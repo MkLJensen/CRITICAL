@@ -2,7 +2,8 @@ class GarbagePack is subclass of GLOBAL
 
 instance variables
 
-garbageSet : set of GarbageType := {}
+garbageSet : set of GarbageType := {};
+inv card garbageSet <= 10;
 
 operations
 public GarbagePack : set of GarbageType ==> GarbagePack
