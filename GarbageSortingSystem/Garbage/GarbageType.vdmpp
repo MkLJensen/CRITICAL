@@ -2,7 +2,7 @@ class GarbageType is subclass of GLOBAL
 
 instance variables
 public weight: nat := 0; 
-inv weight > 0 and weight < 200; -- 200 Kg approx
+inv weight > 0 and weight < GARBAGETYPE_MAX_WEIGHT;
 protected garbageId : [GLOBAL`GarbageId] := nil;
 
 
@@ -31,19 +31,5 @@ getVolume() ==
 pure public getGarbageId : () ==> GLOBAL`GarbageId
 getGarbageId() ==
     return garbageId;
-
-
-
-
-
-
-
-
-
-
-
--- pure public getDimensions : () ==> dimensionsType
--- getDimensions() == 
---     return dimensions;
 
 end GarbageType

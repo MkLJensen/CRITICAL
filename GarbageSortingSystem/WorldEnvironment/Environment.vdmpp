@@ -4,8 +4,6 @@ types
 
 inline = seq of char * seq of gbpackinputtype * Time
 
---[mk_("Brammersgade",[mk_gbpackinputtype(<METALID>,mk_(10,5,3),20)],0)]
-
 instance variables 
 FinishedCollecting : bool := false;
 
