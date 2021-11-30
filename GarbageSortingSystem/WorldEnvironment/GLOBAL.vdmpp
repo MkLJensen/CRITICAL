@@ -2,8 +2,16 @@ class GLOBAL
 
 instance variables
 
---public GARBAGETRUCK_MAX_WEIGHT : nat := 1000; --kg
---public GARBAGETRUCK_MAX_VOLUME : nat := 300; --cm^3
+public static GARBAGETYPE_MAX_WIDTH     : nat := 20;
+public static GARBAGETYPE_MAX_LENGTH    : nat := 15;
+public static GARBAGETYPE_MAX_HEIGHT    : nat := 30;
+public static GARBAGETRUCK_MAX_WEIGHT   : nat := 1000; --kg
+public static GARBAGETRUCK_MAX_VOLUME   : nat := GARBAGETYPE_MAX_WIDTH*GARBAGETYPE_MAX_LENGTH*GARBAGETYPE_MAX_HEIGHT*10; --cm^3
+
+
+public InvalidAddressChars : set of char := {'!', '#', '¤', '%', '&', '/', '(', ')', '=',
+                                            '^', '*', ',', '.', '<', '>', 'æ', 'ø', 'å'};
+public allowedIdNbrs : set of char := {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 
 types 
@@ -17,6 +25,7 @@ types
                             length : nat
                             height : nat;
 
+    
 functions
 public SumDimensionGarbagePack: set of GarbageType +> nat
 SumDimensionGarbagePack(s) ==

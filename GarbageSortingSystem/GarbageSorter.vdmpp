@@ -19,20 +19,13 @@ MapCombine(m1, m2) ==
     {id |-> m2(id) | id in set dom m2 \ dom m1}
 );
 
-
--- public MapCombine : GarbageMap * GarbageMap -> GarbageMap
--- MapCombine(m1, m2) == (
---     {gid |-> m1(gid) union m2(gid) | gid in set dom m1} -- gid in set dom m1, changed to m2
--- );
-
-
-public sortSetofGarbagePack: set of GarbageType -> GarbageMap
-sortSetofGarbagePack(s) == 
+public sortSetofGarbageType: set of GarbageType -> GarbageMap
+sortSetofGarbageType(s) == 
     if s = {}
         then {|->}
     else
         let shead in set s 
-            in MapCombine({shead.getGarbageId()|->{shead}} , sortSetofGarbagePack(s\{shead}))
+            in MapCombine({shead.getGarbageId()|->{shead}} , sortSetofGarbageType(s\{shead}))
 measure card s;
 
 

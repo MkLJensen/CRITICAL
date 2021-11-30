@@ -1,4 +1,4 @@
-class GarbageType
+class GarbageType is subclass of GLOBAL
 
 instance variables
 public weight: nat := 0; 
@@ -13,9 +13,9 @@ functions
 
 private InvDimensions : GLOBAL`dimensionsType -> bool
 InvDimensions(mk_GLOBAL`dimensionsType(width,length,height)) == 
-        width < 61 and width > 0 and    -- Less than 61 CM
-        length < 51 and width > 0 and   -- Less than 51 CM
-        height < 87 and width > 0;      -- Less than 87 CM
+        width < GARBAGETYPE_MAX_WIDTH and width > 0 and   
+        length < GARBAGETYPE_MAX_LENGTH and length > 0 and
+        height < GARBAGETYPE_MAX_HEIGHT and height > 0;
 
 
 operations

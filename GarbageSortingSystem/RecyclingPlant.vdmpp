@@ -57,7 +57,7 @@ sortAllTrucks() == (
         do 
         (
             let x = getSetOfIndividualGarbageFromTruck(t) in
-                sortedGarbage := GarbageSorter`MapCombine(sortedGarbage,GarbageSorter`sortSetofGarbagePack(x));
+                sortedGarbage := GarbageSorter`MapCombine(sortedGarbage,GarbageSorter`sortSetofGarbageType(x));
             t.emptyTruck();
             GarbageSortingSystem`garbageSortingController.addTrucks({t});
             rcTrucks := rcTrucks \ {t};

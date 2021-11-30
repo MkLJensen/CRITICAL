@@ -44,7 +44,7 @@ fillTrucks() ==
                     (
                         if ((not t.isTruckFull()) 
                             and (gbFromAddr <> {}) 
-                            and (not GarbageTruck`willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume()))) then -- some trucks are getting overfilled
+                            and (not GarbageTruck`willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume()))) then
                             (
                                 t.addToTruck(gbs);
                                 gbFromAddr := gbFromAddr \ {gbs};
