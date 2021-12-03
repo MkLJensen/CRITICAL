@@ -1,0 +1,92 @@
+\begin{vdmpp}[breaklines=true]
+class TestCase
+  is subclass of Test
+
+instance variables
+  protected name : seq of char
+
+operations
+(*@
+\label{TestCase:8}
+@*)
+  public TestCase: seq of char ==> TestCase
+  TestCase(nm) == name := (*@\vdmnotcovered{nm}@*);
+
+(*@
+\label{GetName:11}
+@*)
+  public GetName: () ==> seq of char
+  GetName () == return (*@\vdmnotcovered{name}@*);
+
+(*@
+\label{AssertTrue:14}
+@*)
+  protected AssertTrue: bool ==> ()
+  AssertTrue (pb) == if not pb then (*@\vdmnotcovered{exit}@*) (*@\vdmnotcovered{<FAILURE>}@*);
+
+(*@
+\label{AssertFalse:17}
+@*)
+  protected AssertFalse: bool ==> ()
+  AssertFalse (pb) == if pb then exit (*@\vdmnotcovered{<FAILURE>}@*);
+
+(*@
+\label{Run:20}
+@*)
+  public Run: TestResult ==> ()
+  Run (ptr) ==
+    trap <FAILURE>
+      with 
+        ptr.AddFailure((*@\vdmnotcovered{self}@*))
+      in
+        (SetUp();
+  RunTest();
+  TearDown());
+
+(*@
+\label{SetUp:30}
+@*)
+  protected SetUp: () ==> ()
+  SetUp () == is subclass responsibility;
+
+(*@
+\label{RunTest:33}
+@*)
+  protected RunTest: () ==> ()
+  RunTest () == is subclass responsibility;
+
+(*@
+\label{TearDown:36}
+@*)
+  protected TearDown: () ==> ()
+  TearDown () == is subclass responsibility
+
+end TestCase
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[AssertFalse:17]{AssertFalse} & 17&0.0\% & 0 \\
+\hline
+\hyperref[AssertTrue:14]{AssertTrue} & 14&60.0\% & 0 \\
+\hline
+\hyperref[GetName:11]{GetName} & 11&0.0\% & 0 \\
+\hline
+\hyperref[Run:20]{Run} & 20&71.4\% & 2 \\
+\hline
+\hyperref[RunTest:33]{RunTest} & 33&100.0\% & 6 \\
+\hline
+\hyperref[SetUp:30]{SetUp} & 30&100.0\% & 6 \\
+\hline
+\hyperref[TearDown:36]{TearDown} & 36&100.0\% & 6 \\
+\hline
+\hyperref[TestCase:8]{TestCase} & 8&0.0\% & 0 \\
+\hline
+\hline
+TestCase.vdmpp & & 47.8\% & 20 \\
+\hline
+\end{longtable}
+

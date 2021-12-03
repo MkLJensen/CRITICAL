@@ -1,0 +1,68 @@
+\begin{vdmpp}[breaklines=true]
+class GarbageType is subclass of GLOBAL
+
+instance variables
+public weight: nat := 0; 
+inv weight > 0 and weight < GARBAGETYPE_MAX_WEIGHT;
+protected garbageId : [GLOBAL`GarbageId] := nil;
+
+
+public dimensions: [GLOBAL`dimensionsType] := nil;
+inv InvDimensions(dimensions)
+
+functions
+
+(*@
+\label{InvDimensions:14}
+@*)
+private InvDimensions : GLOBAL`dimensionsType -> bool
+InvDimensions(mk_GLOBAL`dimensionsType(width,length,height)) == 
+        width < GARBAGETYPE_MAX_WIDTH and width > 0 and   
+        length < GARBAGETYPE_MAX_LENGTH and length > 0 and
+        height < GARBAGETYPE_MAX_HEIGHT and height > 0;
+
+
+operations
+
+(*@
+\label{getWeight:23}
+@*)
+pure public getWeight : () ==> nat
+getWeight() == 
+    return weight;
+
+(*@
+\label{getVolume:27}
+@*)
+pure public getVolume : () ==> nat
+getVolume() ==
+    return dimensions.width*dimensions.length*dimensions.height;
+
+(*@
+\label{getGarbageId:31}
+@*)
+pure public getGarbageId : () ==> GLOBAL`GarbageId
+getGarbageId() ==
+    return garbageId;
+
+end GarbageType
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[InvDimensions:14]{InvDimensions} & 14&100.0\% & 648 \\
+\hline
+\hyperref[getGarbageId:31]{getGarbageId} & 31&100.0\% & 117 \\
+\hline
+\hyperref[getVolume:27]{getVolume} & 27&100.0\% & 888 \\
+\hline
+\hyperref[getWeight:23]{getWeight} & 23&100.0\% & 1440 \\
+\hline
+\hline
+GarbageType.vdmpp & & 100.0\% & 3093 \\
+\hline
+\end{longtable}
+

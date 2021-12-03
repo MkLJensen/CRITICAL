@@ -1,0 +1,35 @@
+\begin{vdmpp}[breaklines=true]
+class TestRunner
+
+operations
+(*@
+\label{Run:4}
+@*)
+public Run: () ==> ()
+Run () == 
+( 
+    let t : TestSuite = new TestSuite(), result = new TestResult()
+    in
+    (
+    t.AddTest(new GarbageTruckTest("Truck unittest"));
+    t.AddTest(new GarbageSortingTest());
+    t.Run(result);
+    result.Show();
+    );
+)
+
+end TestRunner
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Run:4]{Run} & 4&100.0\% & 1 \\
+\hline
+\hline
+TRunner.vdmpp & & 100.0\% & 1 \\
+\hline
+\end{longtable}
+

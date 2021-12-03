@@ -1,0 +1,31 @@
+\begin{vdmpp}[breaklines=true]
+class Glass is subclass of GarbageType
+
+operations
+(*@
+\label{Glass:4}
+@*)
+public Glass : GLOBAL`dimensionsType * nat ==> Glass
+Glass(d, w) == 
+    atomic 
+    (
+        dimensions := d;
+        weight := w;
+        garbageId := <GLASSID>
+    );
+
+end Glass
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Glass:4]{Glass} & 4&100.0\% & 48 \\
+\hline
+\hline
+Glass.vdmpp & & 100.0\% & 48 \\
+\hline
+\end{longtable}
+

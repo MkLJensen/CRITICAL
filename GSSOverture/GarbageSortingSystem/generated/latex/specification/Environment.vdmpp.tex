@@ -1,0 +1,99 @@
+\begin{vdmpp}[breaklines=true]
+class Environment is subclass of GLOBAL
+
+types
+
+inline = seq of char * seq of gbpackinputtype * Time
+
+instance variables 
+FinishedCollecting : bool := false;
+
+inlines     : seq of inline  := [];
+
+operations
+
+(*@
+\label{Run:14}
+@*)
+public Run : () ==> ()
+Run() ==
+    (
+        while (not FinishedCollecting) do 
+        (
+        updateAddresses();
+        GarbageSortingSystem`garbageSortingController.Step();
+        GarbageSortingSystem`plant.Step();
+        World`timer.StepTime();
+        );
+    );
+
+(*@
+\label{updateAddresses:26}
+@*)
+private updateAddresses : () ==> ()
+updateAddresses() ==
+(
+    if len inlines > 0
+    then 
+        (dcl curtime : Time := World`timer.GetTime(),
+            doneRead : bool := false;
+            while not doneRead do
+            (
+                def mk_(adrString, gbpackinput, objtime) = hd inlines
+                in
+                    if objtime <= curtime
+                    then (
+                        dcl gtset : set of GarbageType := {};
+                            for gps in gbpackinput
+                            do
+                            (
+                                cases gps.#1:
+                                <GLASSID> -> gtset:= gtset union {new Glass(mk_dimensionsType(gps.#2.width,gps.#2.length,gps.#2.height), gps.#3)},
+                                <METALID> -> gtset:= gtset union {new Metal(mk_dimensionsType(gps.#2.width,gps.#2.length,gps.#2.height), gps.#3)},
+                                <PAPERID> -> gtset:= gtset union {new Paper(mk_dimensionsType(gps.#2.width,gps.#2.length,gps.#2.height), gps.#3)},
+                                <PLASTICID> -> gtset:= gtset union {new Plastic(mk_dimensionsType(gps.#2.width,gps.#2.length,gps.#2.height), gps.#3)},
+                                others -> (*@\vdmnotcovered{skip}@*)
+                                end;
+                            );
+                        GarbageSortingSystem`addressRepository.addToAddresses({adrString |-> {new GarbagePack(gtset)}});
+                        inlines := tl inlines; 
+                        doneRead := len inlines = 0;
+                        )
+                    else
+                        doneRead := true
+            )
+        )
+    else
+        FinishedCollecting := true
+
+);
+
+(*@
+\label{Environment:64}
+@*)
+public Environment : seq of char ==> Environment
+Environment(fname) ==
+(
+    def mk_(-,input) = IO`freadval[seq of inline](fname) 
+        in
+            inlines := input;
+)
+end Environment
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Environment:64]{Environment} & 64&100.0\% & 5 \\
+\hline
+\hyperref[Run:14]{Run} & 14&100.0\% & 12 \\
+\hline
+\hyperref[updateAddresses:26]{updateAddresses} & 26&99.2\% & 9 \\
+\hline
+\hline
+Environment.vdmpp & & 99.2\% & 26 \\
+\hline
+\end{longtable}
+

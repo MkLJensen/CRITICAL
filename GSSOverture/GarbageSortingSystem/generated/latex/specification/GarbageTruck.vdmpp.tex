@@ -1,0 +1,158 @@
+\begin{vdmpp}[breaklines=true]
+class GarbageTruck is subclass of GLOBAL
+
+instance variables
+
+garbageTruckId_ : [seq of char] := nil;
+inv (garbageTruckId_ = nil) or INVtruckId(garbageTruckId_, allowedIdNbrs);
+
+hasBeenFilled : bool := false;
+
+garbagePackSet_ : set of GarbagePack := {};
+inv not (checkTruckWeight(garbagePackSet_)) and not (checkTruckDimension(garbagePackSet_))
+
+functions
+(*@
+\label{INVtruckId:14}
+@*)
+private INVtruckId : seq of char * set of char -> bool
+INVtruckId(id, allowedIDNbrs) == 
+(
+    forall str_i in set {3, ..., len id} & 
+        exists p in set allowedIDNbrs & id(str_i) = p
+    and id(1) = 'I' and id(2) = 'D'
+);
+
+(*@
+\label{checkTruckWeight:22}
+@*)
+private checkTruckWeight : set of GarbagePack -> bool
+checkTruckWeight(gpset) ==
+(
+    GLOBAL`SumSet({SumWeightGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) >= GARBAGETRUCK_MAX_WEIGHT
+);
+
+(*@
+\label{checkTruckDimension:28}
+@*)
+private checkTruckDimension : set of GarbagePack -> bool
+checkTruckDimension(gpset) ==
+(
+    GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) >= GARBAGETRUCK_MAX_VOLUME -- = 10 Max Sizes of GarbageTypes
+);
+
+
+(*@
+\label{willBeOverfilled:35}
+@*)
+public willBeOverfilled : set of GarbagePack * nat * nat -> bool
+willBeOverfilled(gpset, w, vol) ==
+(
+    GLOBAL`SumSet({SumWeightGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + w >= GARBAGETRUCK_MAX_WEIGHT 
+    or GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + vol >= GARBAGETRUCK_MAX_VOLUME
+);
+
+operations
+(*@
+\label{GarbageTruck:43}
+@*)
+public GarbageTruck : seq of char ==> GarbageTruck
+GarbageTruck(id) == 
+(
+    garbageTruckId_ := id;
+)
+pre INVtruckId(id, allowedIdNbrs)
+post garbageTruckId_ <> nil;
+
+(*@
+\label{truckHasBeenFilled:51}
+@*)
+public truckHasBeenFilled : () ==> ()
+truckHasBeenFilled() ==
+(
+    hasBeenFilled := true; 
+);
+
+(*@
+\label{hasTruckBeenFilled:57}
+@*)
+pure public hasTruckBeenFilled : () ==> bool
+hasTruckBeenFilled() ==
+(
+    return hasBeenFilled;
+);
+
+(*@
+\label{isTruckFull:63}
+@*)
+pure public isTruckFull : () ==> bool
+isTruckFull() ==
+(
+    return checkTruckWeight(getTruckGarbage()) and checkTruckDimension((*@\vdmnotcovered{getTruckGarbage}@*)());
+);
+
+(*@
+\label{getTruckGarbage:69}
+@*)
+pure public getTruckGarbage : () ==> set of GarbagePack
+getTruckGarbage() ==
+(
+    return garbagePackSet_;
+);
+
+(*@
+\label{addToTruck:75}
+@*)
+public addToTruck : GarbagePack ==> ()
+addToTruck(gp) ==
+(
+    garbagePackSet_ := garbagePackSet_ union {gp};
+)
+pre not GarbageTruck`willBeOverfilled(getTruckGarbage(), gp.getPackWeight(), gp.getPackVolume());
+
+
+(*@
+\label{emptyTruck:83}
+@*)
+public emptyTruck : () ==> ()
+emptyTruck() == 
+(
+    garbagePackSet_ := {};
+    hasBeenFilled := false;
+)
+
+end GarbageTruck
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[GarbageTruck:43]{GarbageTruck} & 43&100.0\% & 48 \\
+\hline
+\hyperref[INVtruckId:14]{INVtruckId} & 14&100.0\% & 87 \\
+\hline
+\hyperref[addToTruck:75]{addToTruck} & 75&100.0\% & 74 \\
+\hline
+\hyperref[checkTruckDimension:28]{checkTruckDimension} & 28&100.0\% & 68 \\
+\hline
+\hyperref[checkTruckWeight:22]{checkTruckWeight} & 22&100.0\% & 292 \\
+\hline
+\hyperref[emptyTruck:83]{emptyTruck} & 83&100.0\% & 15 \\
+\hline
+\hyperref[getTruckGarbage:69]{getTruckGarbage} & 69&100.0\% & 254 \\
+\hline
+\hyperref[hasTruckBeenFilled:57]{hasTruckBeenFilled} & 57&100.0\% & 72 \\
+\hline
+\hyperref[isTruckFull:63]{isTruckFull} & 63&71.4\% & 92 \\
+\hline
+\hyperref[truckHasBeenFilled:51]{truckHasBeenFilled} & 51&100.0\% & 21 \\
+\hline
+\hyperref[willBeOverfilled:35]{willBeOverfilled} & 35&100.0\% & 146 \\
+\hline
+\hline
+GarbageTruck.vdmpp & & 98.4\% & 1169 \\
+\hline
+\end{longtable}
+

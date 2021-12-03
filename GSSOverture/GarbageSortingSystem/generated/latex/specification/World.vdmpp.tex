@@ -1,0 +1,48 @@
+\begin{vdmpp}[breaklines=true]
+class World
+instance variables  
+
+public static
+  env : [Environment] := nil;
+
+public static 
+  timer : Timer := new Timer();
+   
+operations
+
+public 
+(*@
+\label{World:13}
+@*)
+  World : () ==> World
+  World() ==
+  (
+    env := new Environment("scenario.txt");
+    GarbageSortingSystem`garbageSortingController.addTrucks(GarbageSortingSystem`trucks)
+  );
+  
+public 
+(*@
+\label{Run:21}
+@*)
+  Run : () ==> ()
+  Run() ==
+    env.Run();
+
+end World
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Run:21]{Run} & 21&100.0\% & 3 \\
+\hline
+\hyperref[World:13]{World} & 13&100.0\% & 5 \\
+\hline
+\hline
+World.vdmpp & & 100.0\% & 8 \\
+\hline
+\end{longtable}
+

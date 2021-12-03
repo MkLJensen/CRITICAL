@@ -1,0 +1,33 @@
+\begin{vdmpp}[breaklines=true]
+class Metal is subclass of GarbageType
+
+operations
+(*@
+\label{Metal:4}
+@*)
+public Metal : GLOBAL`dimensionsType * nat ==> Metal
+Metal(d, w) == 
+    atomic 
+    (
+        dimensions := d;
+        weight := w;
+        garbageId := <METALID>
+    );
+
+
+
+end Metal
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Metal:4]{Metal} & 4&100.0\% & 66 \\
+\hline
+\hline
+Metal.vdmpp & & 100.0\% & 66 \\
+\hline
+\end{longtable}
+

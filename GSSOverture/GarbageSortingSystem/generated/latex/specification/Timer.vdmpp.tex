@@ -1,0 +1,43 @@
+\begin{vdmpp}[breaklines=true]
+class Timer 
+
+instance variables
+  currentTime : nat := 0;
+
+values 
+  stepLength : nat = 100;
+
+operations
+
+public 
+(*@
+\label{StepTime:12}
+@*)
+  StepTime: () ==> ()
+  StepTime() == 
+    currentTime := currentTime + stepLength;
+
+public
+(*@
+\label{GetTime:17}
+@*)
+  GetTime: () ==> nat 
+  GetTime() == return currentTime;
+
+end Timer
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[GetTime:17]{GetTime} & 17&100.0\% & 18 \\
+\hline
+\hyperref[StepTime:12]{StepTime} & 12&100.0\% & 12 \\
+\hline
+\hline
+Timer.vdmpp & & 100.0\% & 30 \\
+\hline
+\end{longtable}
+

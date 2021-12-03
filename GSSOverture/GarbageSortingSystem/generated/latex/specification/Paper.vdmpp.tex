@@ -1,0 +1,32 @@
+\begin{vdmpp}[breaklines=true]
+class Paper is subclass of GarbageType
+
+operations
+(*@
+\label{Paper:4}
+@*)
+public Paper : GLOBAL`dimensionsType * nat ==> Paper
+Paper(d, w) == 
+    atomic 
+    (
+        dimensions := d;
+        weight := w;
+        garbageId := <PAPERID>
+    );
+
+
+end Paper
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Paper:4]{Paper} & 4&100.0\% & 66 \\
+\hline
+\hline
+Paper.vdmpp & & 100.0\% & 66 \\
+\hline
+\end{longtable}
+

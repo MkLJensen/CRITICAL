@@ -1,0 +1,50 @@
+\begin{vdmpp}[breaklines=true]
+class TestResult
+
+instance variables
+  failures : seq of TestCase := []
+  
+operations
+(*@
+\label{AddFailure:7}
+@*)
+  public AddFailure: TestCase ==> ()
+  AddFailure (ptst) == (*@\vdmnotcovered{failures}@*) := (*@\vdmnotcovered{failures}@*) (*@\vdmnotcovered{\^{}}@*) [(*@\vdmnotcovered{ptst}@*)];
+
+(*@
+\label{Print:10}
+@*)
+  public Print: seq of char ==> ()
+  Print (pstr) ==
+    def - = new IO().echo(pstr ^ "\n") in skip;
+    
+(*@
+\label{Show:14}
+@*)
+  public Show: () ==> ()
+  Show () ==
+    if failures = [] then
+      Print ("No failures detected")
+    else
+      (*@\vdmnotcovered{for}@*) failure in (*@\vdmnotcovered{failures}@*) do
+        Print (failure.GetName() ^ (*@\vdmnotcovered{" failed"}@*))
+  
+end TestResult
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[AddFailure:7]{AddFailure} & 7&0.0\% & 0 \\
+\hline
+\hyperref[Print:10]{Print} & 10&100.0\% & 1 \\
+\hline
+\hyperref[Show:14]{Show} & 14&46.1\% & 1 \\
+\hline
+\hline
+TestResult.vdmpp & & 55.5\% & 2 \\
+\hline
+\end{longtable}
+

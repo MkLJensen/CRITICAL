@@ -1,0 +1,86 @@
+\begin{vdmpp}[breaklines=true]
+class GLOBAL
+
+instance variables
+
+public static GARBAGETYPE_MAX_WEIGHT    : nat := 200;
+public static GARBAGETYPE_MAX_WIDTH     : nat := 20;
+public static GARBAGETYPE_MAX_LENGTH    : nat := 15;
+public static GARBAGETYPE_MAX_HEIGHT    : nat := 30;
+public static GARBAGETRUCK_MAX_WEIGHT   : nat := 1000;
+public static GARBAGEPACK_MAX_NR        : nat := 10;
+public static GARBAGETRUCK_MAX_VOLUME   : nat := GARBAGETYPE_MAX_WIDTH*GARBAGETYPE_MAX_LENGTH*GARBAGETYPE_MAX_HEIGHT*GARBAGEPACK_MAX_NR;
+
+
+public static InvalidAddressChars : set of char := {'!', '#', '%', '&', '/', '(', ')', '=',
+                                            '^', '*', '.', '<', '>'};
+public static allowedIdNbrs : set of char := {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+
+types 
+    public Time = nat;
+
+    public gbpackinputtype = GarbageId * dimensionsType * nat;
+
+    public GarbageId = <GLASSID> | <METALID> | <PAPERID> | <PLASTICID>;
+
+    public dimensionsType :: width  : nat
+                            length : nat
+                            height : nat;
+
+    
+functions
+(*@
+\label{SumDimensionGarbagePack:32}
+@*)
+public SumDimensionGarbagePack: set of GarbageType +> nat
+SumDimensionGarbagePack(s) ==
+    if s = {}                         
+    then 0                                         
+    else let e in set s in
+        e.getVolume() + SumDimensionGarbagePack(s \ {e})
+measure card s;
+
+(*@
+\label{SumWeightGarbagePack:40}
+@*)
+public SumWeightGarbagePack: set of GarbageType +> nat
+SumWeightGarbagePack(s) ==
+    if s = {}                         
+    then 0                                         
+    else let e in set s in
+        e.getWeight() + SumWeightGarbagePack(s \ {e})
+measure card s;
+
+
+(*@
+\label{SumSet:49}
+@*)
+public SumSet: set of nat -> nat
+SumSet(s) ==
+    if s = {}
+    then 0
+    else let e in set s in
+        e + SumSet(s \ {e})
+measure card s;
+
+
+end GLOBAL
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[SumDimensionGarbagePack:32]{SumDimensionGarbagePack} & 32&100.0\% & 1189 \\
+\hline
+\hyperref[SumSet:49]{SumSet} & 49&100.0\% & 817 \\
+\hline
+\hyperref[SumWeightGarbagePack:40]{SumWeightGarbagePack} & 40&100.0\% & 4320 \\
+\hline
+\hline
+GLOBAL.vdmpp & & 100.0\% & 6326 \\
+\hline
+\end{longtable}
+

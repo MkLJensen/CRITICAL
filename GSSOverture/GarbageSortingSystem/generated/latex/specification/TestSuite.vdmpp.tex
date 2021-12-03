@@ -1,0 +1,46 @@
+\begin{vdmpp}[breaklines=true]
+class TestSuite
+  is subclass of Test
+
+instance variables
+  tests : seq of Test := [];
+
+operations
+(*@
+\label{Run:8}
+@*)
+  public Run: () ==> ()
+  Run () ==
+    (*@\vdmnotcovered{(}@*)dcl ntr : TestResult := new (*@\vdmnotcovered{TestResult}@*)();
+     Run((*@\vdmnotcovered{ntr}@*));
+     (*@\vdmnotcovered{ntr}@*).Show());
+
+  public Run: TestResult ==> ()
+  Run (result) ==
+    for test in tests do
+      test.Run(result);
+
+(*@
+\label{AddTest:19}
+@*)
+  public AddTest: Test ==> ()
+  AddTest(test) ==
+    tests := tests ^ [test];
+
+end TestSuite
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[AddTest:19]{AddTest} & 19&100.0\% & 2 \\
+\hline
+\hyperref[Run:8]{Run} & 8&100.0\% & 2 \\
+\hline
+\hline
+TestSuite.vdmpp & & 62.5\% & 4 \\
+\hline
+\end{longtable}
+

@@ -1,0 +1,32 @@
+\begin{vdmpp}[breaklines=true]
+class Plastic is subclass of GarbageType
+
+operations
+(*@
+\label{Plastic:4}
+@*)
+public Plastic : GLOBAL`dimensionsType * nat ==> Plastic
+Plastic(d, w) == 
+    atomic 
+    (
+        dimensions := d;
+        weight := w;
+        garbageId := <PLASTICID>
+    );
+
+
+end Plastic
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Plastic:4]{Plastic} & 4&100.0\% & 36 \\
+\hline
+\hline
+Plastic.vdmpp & & 100.0\% & 36 \\
+\hline
+\end{longtable}
+

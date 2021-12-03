@@ -1,0 +1,104 @@
+\begin{vdmpp}[breaklines=true]
+class AddressRepository is subclass of GLOBAL
+
+instance variables
+    addresses_ : map seq of char to set of GarbagePack := {|->};
+    inv InvAdressID(addresses_, InvalidAddressChars);
+
+
+functions
+(*@
+\label{InvAdressID:9}
+@*)
+private InvAdressID : map seq of char to set of GarbagePack* set of char -> bool
+InvAdressID(addr, invalidChars) == 
+    forall adr in set dom addr &
+        forall s in seq adr &
+            forall ch in set invalidChars & s <> ch;
+
+
+operations
+(*@
+\label{AddressRepository:17}
+@*)
+public AddressRepository : map seq of char to set of GarbagePack ==> AddressRepository
+AddressRepository(aMap) == 
+(
+    addresses_ := aMap;
+);
+
+(*@
+\label{addToAddresses:23}
+@*)
+public addToAddresses : map seq of char to set of GarbagePack ==> ()
+addToAddresses(aMap) ==
+(
+    for all addr in set dom aMap do
+    (
+        addresses_(addr) := addresses_(addr) union aMap(addr)
+    )
+)
+pre forall aP in set dom aMap & 
+    exists1 p in set dom addresses_ & aP = p
+
+-- Dunion can be used because objects are used and therefore parts of the set wont be removed if they are the same.
+post forall gR in set dunion rng aMap & 
+    exists1 p in set dunion rng addresses_ & p = gR;
+
+
+(*@
+\label{getGarbageFromAddress:39}
+@*)
+pure public getGarbageFromAddress : seq of char ==> set of GarbagePack
+getGarbageFromAddress(addr) ==
+(
+    return addresses_(addr)
+)
+pre exists1 p in set dom addresses_ & p = addr;
+
+(*@
+\label{removeGarbageFromAddress:46}
+@*)
+public removeGarbageFromAddress : seq of char * GarbagePack ==> ()
+removeGarbageFromAddress(addr, GarbagePack) ==
+(
+    addresses_(addr) := addresses_(addr) \ {GarbagePack};
+)
+post forall p in set rng addresses_ & 
+            forall gp in set p & GarbagePack <> gp;
+
+
+(*@
+\label{getAddresses:55}
+@*)
+pure public getAddresses : () ==> map seq of char to set of GarbagePack
+getAddresses() ==
+(
+    return addresses_;
+);
+
+end AddressRepository
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[AddressRepository:17]{AddressRepository} & 17&100.0\% & 5 \\
+\hline
+\hyperref[InvAdressID:9]{InvAdressID} & 9&100.0\% & 2275 \\
+\hline
+\hyperref[addToAddresses:23]{addToAddresses} & 23&100.0\% & 27 \\
+\hline
+\hyperref[getAddresses:55]{getAddresses} & 55&100.0\% & 12 \\
+\hline
+\hyperref[getGarbageFromAddress:39]{getGarbageFromAddress} & 39&100.0\% & 72 \\
+\hline
+\hyperref[removeGarbageFromAddress:46]{removeGarbageFromAddress} & 46&100.0\% & 36 \\
+\hline
+\hline
+AddressRepository.vdmpp & & 100.0\% & 2427 \\
+\hline
+\end{longtable}
+

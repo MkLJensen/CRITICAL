@@ -1,0 +1,138 @@
+\begin{vdmpp}[breaklines=true]
+class GarbageSortingTest is subclass of GLOBAL, TestCase
+
+values
+
+gP1 : GarbagePack = new GarbagePack({new Metal(mk_dimensionsType(5,8,7), 100), -- W: 543, V: 280+36+30+224+56+32 = 658
+                                     new Paper(mk_dimensionsType(3,4,3), 140),
+                                     new Glass(mk_dimensionsType(6,5,1), 38),
+                                     new Plastic(mk_dimensionsType(7,8,4), 65),
+                                     new Metal(mk_dimensionsType(7,2,4), 35),
+                                     new Paper(mk_dimensionsType(1,8,4), 165)
+                                     });
+
+gP2 : GarbagePack = new GarbagePack({new Metal(mk_dimensionsType(5,8,7), 170), -- W: 448, V: 280+36+30 = 346
+                                     new Paper(mk_dimensionsType(3,4,3), 140),
+                                     new Glass(mk_dimensionsType(6,5,1), 138)
+                                     });
+
+gP3 : GarbagePack = new GarbagePack({new Metal(mk_dimensionsType(1,2,5), 110), -- W: 414, V: 10+14+2+64+7+12 = 109
+                                     new Paper(mk_dimensionsType(7,2,1), 40),
+                                     new Glass(mk_dimensionsType(1,2,1), 13),
+                                     new Plastic(mk_dimensionsType(1,8,8), 85),
+                                     new Metal(mk_dimensionsType(7,1,1), 31),
+                                     new Paper(mk_dimensionsType(1,3,4), 135)
+                                     });
+
+gP4 : GarbagePack = new GarbagePack({new Metal(mk_dimensionsType(5,8,7), 190), -- W: 527, V: 280+36+30 = 346
+                                     new Paper(mk_dimensionsType(3,4,3), 149),
+                                     new Glass(mk_dimensionsType(6,5,1), 188)
+                                     });
+
+sortedGarbage : GarbageSorter`GarbageMap = {   <GLASSID>   |-> {},
+                                                <METALID>   |-> {},
+                                                <PAPERID>   |-> {},
+                                                <PLASTICID> |-> {}
+                                            };
+
+-- Weights:
+-- Metal = 100 + 35 + 170 + 110 + 31 + 190 = 636
+-- Paper = 140 + 165 + 140 + 40 + 135 + 149 = 769
+-- Glass = 38 + 138 + 13 + 188 = 377
+-- Plastic = 65 + 85 = 150
+-- == 1932
+
+-- Volume:
+-- Metal = 280 + 56 + 280 + 10 + 7 + 280 = 913
+-- Paper = 36 + 32 + 36 + 14 + 12 + 36 = 166
+-- Glass = 30 + 30 + 2 + 30 = 92
+-- Plastic = 224 + 64 = 288
+-- == 1459
+
+operations
+(*@
+\label{GarbageSortingTest:52}
+@*)
+    public GarbageSortingTest: seq of char ==> GarbageSortingTest
+    GarbageSortingTest(name_) ==
+    (*@\vdmnotcovered{(}@*)(*@\vdmnotcovered{name}@*) := (*@\vdmnotcovered{name\_}@*));
+
+(*@
+\label{SetUp:56}
+@*)
+    protected SetUp : () ==> ()
+    SetUp() == skip;
+
+(*@
+\label{TearDown:59}
+@*)
+    protected TearDown: () ==> ()
+    TearDown() == skip;
+
+(*@
+\label{RunTest:62}
+@*)
+    protected RunTest: () ==> ()
+    RunTest() ==
+    (
+        dcl gs : GarbageSorter := new GarbageSorter(), 
+                sortedMap : GarbageSorter`GarbageMap, 
+                emptySet : set of GarbageType := {},
+                metalWeight : nat := 0,
+                paperWeight : nat := 0,
+                glassWeight : nat := 0,
+                plasticWeight : nat := 0,
+                metalVol : nat := 0,
+                paperVol : nat := 0,
+                glassVol : nat := 0,
+                plasticVol : nat := 0;
+
+        emptySet:= dunion {i.getGarbagePack() | i in set {gP1, gP2, gP3, gP4}};
+
+        sortedMap := GarbageSorter`MapCombine(sortedGarbage,GarbageSorter`sortSetofGarbageType(emptySet));
+
+        metalWeight := SumWeightGarbagePack(sortedMap(<METALID>));
+        paperWeight := SumWeightGarbagePack(sortedMap(<PAPERID>));
+        glassWeight := SumWeightGarbagePack(sortedMap(<GLASSID>));
+        plasticWeight := SumWeightGarbagePack(sortedMap(<PLASTICID>));
+
+        metalVol := SumDimensionGarbagePack(sortedMap(<METALID>));
+        paperVol := SumDimensionGarbagePack(sortedMap(<PAPERID>));
+        glassVol := SumDimensionGarbagePack(sortedMap(<GLASSID>));
+        plasticVol := SumDimensionGarbagePack(sortedMap(<PLASTICID>));
+
+        AssertTrue(metalWeight = 636);
+        AssertTrue(paperWeight = 769);
+        AssertTrue(glassWeight = 377);
+        AssertTrue(plasticWeight = 150);
+
+        AssertTrue(metalVol = 913);
+        AssertTrue(paperVol = 166);
+        AssertTrue(glassVol = 92);
+        AssertTrue(plasticVol = 288);
+
+        AssertTrue(metalWeight + paperWeight + glassWeight + plasticWeight = 1932);
+        AssertTrue(metalVol + paperVol + glassVol + plasticVol = 1459);
+    )
+
+end GarbageSortingTest
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[GarbageSortingTest:52]{GarbageSortingTest} & 52&0.0\% & 0 \\
+\hline
+\hyperref[RunTest:62]{RunTest} & 62&100.0\% & 1 \\
+\hline
+\hyperref[SetUp:56]{SetUp} & 56&100.0\% & 1 \\
+\hline
+\hyperref[TearDown:59]{TearDown} & 59&100.0\% & 1 \\
+\hline
+\hline
+GarbageSortingTest.vdmpp & & 98.8\% & 3 \\
+\hline
+\end{longtable}
+

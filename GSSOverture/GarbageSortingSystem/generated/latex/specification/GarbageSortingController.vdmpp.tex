@@ -1,0 +1,108 @@
+\begin{vdmpp}[breaklines=true]
+class GarbageSortingController
+
+instance variables
+trucks : set of GarbageTruck := {};
+
+operations
+(*@
+\label{Step:7}
+@*)
+public Step : () ==> ()
+Step() == 
+(
+    dcl fulltrucks : set of GarbageTruck;
+    fillTrucks();
+    fulltrucks := scanForFullTrucks();
+    sendTrucksToPlant(fulltrucks);
+);
+
+(*@
+\label{addTrucks:16}
+@*)
+public addTrucks : set of GarbageTruck ==> ()
+addTrucks(gtset) == 
+(
+    trucks := trucks union gtset;
+);
+
+-- Will go through trucks, and then it will remove the trucks from the instance variable 
+-- set if they are full, and add them to a local variable that will be returned
+(*@
+\label{scanForFullTrucks:24}
+@*)
+private scanForFullTrucks : () ==> set of GarbageTruck
+scanForFullTrucks() ==
+(
+    dcl fulltrucks : set of GarbageTruck := {t | t in set trucks & t.hasTruckBeenFilled()};
+    trucks := trucks \ {t | t in set trucks & t.hasTruckBeenFilled()};
+    return fulltrucks;
+);
+
+(*@
+\label{fillTrucks:32}
+@*)
+private fillTrucks : () ==> ()
+fillTrucks() ==
+(
+    for all addrs in set dom GarbageSortingSystem`addressRepository.getAddresses()
+    do
+        (
+        dcl gbFromAddr : set of GarbagePack := GarbageSortingSystem`addressRepository.getGarbageFromAddress(addrs);
+            for all gbs in set gbFromAddr
+            do
+            (
+                for all t in set trucks
+                do
+                    (
+                        if ((not t.isTruckFull()) 
+                            and (gbFromAddr <> {}) 
+                            and (not GarbageTruck`willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume()))) then
+                            (
+                                t.addToTruck(gbs);
+                                gbFromAddr := gbFromAddr \ {gbs};
+                                GarbageSortingSystem`addressRepository.removeGarbageFromAddress(addrs, gbs);
+                            )
+                            else if(GarbageTruck`willBeOverfilled(t.getTruckGarbage(), gbs.getPackWeight(), gbs.getPackVolume())) then 
+                            (
+                                t.truckHasBeenFilled();
+                            )
+                    );
+            )
+        );
+);
+
+
+(*@
+\label{sendTrucksToPlant:63}
+@*)
+private sendTrucksToPlant: set of GarbageTruck ==> ()
+sendTrucksToPlant(truck) == 
+(
+    GarbageSortingSystem`plant.addFilledTrucksToPlant(truck)
+);
+
+
+end GarbageSortingController
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Step:7]{Step} & 7&100.0\% & 12 \\
+\hline
+\hyperref[addTrucks:16]{addTrucks} & 16&100.0\% & 20 \\
+\hline
+\hyperref[fillTrucks:32]{fillTrucks} & 32&100.0\% & 162 \\
+\hline
+\hyperref[scanForFullTrucks:24]{scanForFullTrucks} & 24&100.0\% & 12 \\
+\hline
+\hyperref[sendTrucksToPlant:63]{sendTrucksToPlant} & 63&100.0\% & 12 \\
+\hline
+\hline
+GarbageSortingController.vdmpp & & 100.0\% & 218 \\
+\hline
+\end{longtable}
+

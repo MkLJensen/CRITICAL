@@ -1,0 +1,30 @@
+\begin{vdmpp}[breaklines=true]
+class GarbageSortingSystem
+
+instance variables 
+
+public static trucks : set of GarbageTruck := {new GarbageTruck("ID1"), new GarbageTruck("ID2"), new GarbageTruck("ID3")};
+
+public static garbageSortingController : GarbageSortingController := new GarbageSortingController();
+
+public static addressRepository : AddressRepository := new AddressRepository({ "Brammersgade"  |-> {},
+                                                                                "Frederiksgade" |-> {},
+                                                                                "Odensegade"    |-> {}});
+
+public static plant : RecyclingPlant := new RecyclingPlant()
+                                                
+
+
+end GarbageSortingSystem
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hline
+GarbageSortingSystem.vdmpp & & 100.0\% & 0 \\
+\hline
+\end{longtable}
+

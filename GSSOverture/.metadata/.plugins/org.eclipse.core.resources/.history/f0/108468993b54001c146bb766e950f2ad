@@ -1,0 +1,90 @@
+class GarbageTruck is subclass of GLOBAL
+
+instance variables
+
+garbageTruckId_ : [seq of char] := nil;
+inv (garbageTruckId_ = nil) or INVtruckId(garbageTruckId_, allowedIdNbrs);
+
+hasBeenFilled : bool := false;
+
+garbagePackSet_ : set of GarbagePack := {};
+inv not (checkTruckWeight(garbagePackSet_)) and not (checkTruckDimension(garbagePackSet_))
+
+functions
+private INVtruckId : seq of char * set of char -> bool
+INVtruckId(id, allowedIDNbrs) == 
+(
+    forall str_i in set {3, ..., len id} & 
+        exists p in set allowedIDNbrs & id(str_i) = p
+    and id(1) = 'I' and id(2) = 'D'
+);
+
+private checkTruckWeight : set of GarbagePack -> bool
+checkTruckWeight(gpset) ==
+(
+    GLOBAL`SumSet({SumWeightGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) >= GARBAGETRUCK_MAX_WEIGHT
+);
+
+private checkTruckDimension : set of GarbagePack -> bool
+checkTruckDimension(gpset) ==
+(
+    GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) >= GARBAGETRUCK_MAX_VOLUME -- = 10 Max Sizes of GarbageTypes
+);
+
+
+public willBeOverfilled : set of GarbagePack * nat * nat -> bool
+willBeOverfilled(gpset, w, vol) ==
+(
+    GLOBAL`SumSet({SumWeightGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + w >= GARBAGETRUCK_MAX_WEIGHT 
+    or GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + vol >= GARBAGETRUCK_MAX_VOLUME
+);
+
+operations
+public GarbageTruck : seq of char ==> GarbageTruck
+GarbageTruck(id) == 
+(
+    garbageTruckId_ := id;
+)
+pre INVtruckId(id, allowedIdNbrs)
+post garbageTruckId_ <> nil;
+
+public truckHasBeenFilled : () ==> ()
+truckHasBeenFilled() ==
+(
+    hasBeenFilled := true; 
+);
+
+pure public hasTruckBeenFilled : () ==> bool
+hasTruckBeenFilled() ==
+(
+    return hasBeenFilled;
+);
+
+pure public isTruckFull : () ==> bool
+isTruckFull() ==
+(
+    return checkTruckWeight(getTruckGarbage()) and checkTruckDimension(getTruckGarbage());
+);
+
+pure public getTruckGarbage : () ==> set of GarbagePack
+getTruckGarbage() ==
+(
+    return garbagePackSet_;
+);
+
+public addToTruck : GarbagePack ==> ()
+addToTruck(gp) ==
+(
+    garbagePackSet_ := garbagePackSet_ union {gp};
+)
+pre not GarbageTruck`willBeOverfilled(getTruckGarbage(), gp.getPackWeight(), gp.getPackVolume());
+
+
+public emptyTruck : () ==> ()
+emptyTruck() == 
+(
+    garbagePackSet_ := {};
+    hasBeenFilled := false;
+)
+
+end GarbageTruck

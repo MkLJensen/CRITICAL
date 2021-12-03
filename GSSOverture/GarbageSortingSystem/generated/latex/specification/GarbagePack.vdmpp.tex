@@ -1,0 +1,64 @@
+\begin{vdmpp}[breaklines=true]
+class GarbagePack is subclass of GLOBAL
+
+instance variables
+
+garbageSet : set of GarbageType := {};
+inv card garbageSet <= 10;
+
+operations
+(*@
+\label{GarbagePack:9}
+@*)
+public GarbagePack : set of GarbageType ==> GarbagePack
+GarbagePack(garbage) == 
+(
+    garbageSet := garbage;
+);
+
+(*@
+\label{getGarbagePack:15}
+@*)
+pure public getGarbagePack : () ==> set of GarbageType
+getGarbagePack() == 
+(
+    return garbageSet;
+);
+
+(*@
+\label{getPackWeight:21}
+@*)
+pure public getPackWeight : () ==> nat
+getPackWeight() == 
+(
+    return SumWeightGarbagePack(getGarbagePack());
+);
+
+(*@
+\label{getPackVolume:27}
+@*)
+pure public getPackVolume : () ==> nat
+getPackVolume() ==
+    return SumDimensionGarbagePack(getGarbagePack())
+
+end GarbagePack
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[GarbagePack:9]{GarbagePack} & 9&100.0\% & 57 \\
+\hline
+\hyperref[getGarbagePack:15]{getGarbagePack} & 15&100.0\% & 741 \\
+\hline
+\hyperref[getPackVolume:27]{getPackVolume} & 27&100.0\% & 146 \\
+\hline
+\hyperref[getPackWeight:21]{getPackWeight} & 21&100.0\% & 292 \\
+\hline
+\hline
+GarbagePack.vdmpp & & 100.0\% & 1236 \\
+\hline
+\end{longtable}
+

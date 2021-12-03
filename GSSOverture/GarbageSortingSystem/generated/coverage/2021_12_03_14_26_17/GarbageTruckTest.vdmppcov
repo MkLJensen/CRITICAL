@@ -1,0 +1,41 @@
+class GarbageTruckTest is subclass of GLOBAL, TestCase
+
+values 
+gP1 : GarbagePack = new GarbagePack({new Metal(mk_dimensionsType(5,8,7), 100), -- 643
+                                     new Paper(mk_dimensionsType(3,4,3), 140),
+                                     new Glass(mk_dimensionsType(6,5,1), 138),
+                                     new Plastic(mk_dimensionsType(7,8,4), 65),
+                                     new Metal(mk_dimensionsType(7,2,4), 35),
+                                     new Paper(mk_dimensionsType(1,8,4), 165)
+                                     });
+
+gP2 : GarbagePack = new GarbagePack({new Metal(mk_dimensionsType(5,8,7), 170), -- 448
+                                     new Paper(mk_dimensionsType(3,4,3), 140),
+                                     new Glass(mk_dimensionsType(6,5,1), 138)
+                                     });
+
+
+operations
+    public GarbageTruckTest: seq of char ==> GarbageTruckTest
+    GarbageTruckTest(name_) ==
+    (name := name_);
+
+    protected SetUp : () ==> ()
+    SetUp() == skip;
+
+    protected TearDown: () ==> ()
+    TearDown() == skip;
+
+    protected RunTest: () ==> ()
+    RunTest() ==
+    (
+        dcl truck1 : GarbageTruck := new GarbageTruck("ID12");
+        AssertTrue(truck1.isTruckFull() = false);
+        truck1.addToTruck(gP1);
+        AssertTrue(truck1.getTruckGarbage() = {gP1});
+        AssertTrue(truck1.isTruckFull() = false);
+        AssertTrue(GarbageTruck`willBeOverfilled(truck1.getTruckGarbage(), gP2.getPackWeight(), gP2.getPackVolume()) = true);
+    );
+
+
+end GarbageTruckTest
