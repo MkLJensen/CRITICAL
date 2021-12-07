@@ -48,6 +48,7 @@ removeGarbageFromAddress(addr, GarbagePack) ==
 (
     addresses_(addr) := addresses_(addr) \ {GarbagePack};
 )
+pre exists1 p in set dom addresses_ & p = addr
 post forall p in set rng addresses_ & 
             forall gp in set p & GarbagePack <> gp;
 

@@ -28,7 +28,7 @@ checkTruckWeight(gpset) ==
 private checkTruckDimension : set of GarbagePack -> bool
 checkTruckDimension(gpset) ==
 (
-    GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) >= GARBAGETRUCK_MAX_VOLUME -- = 10 Max Sizes of GarbageTypes
+    GLOBAL`SumSet({SumVolumeGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) >= GARBAGETRUCK_MAX_VOLUME -- = 10 Max Sizes of GarbageTypes
 );
 
 
@@ -36,7 +36,7 @@ public willBeOverfilled : set of GarbagePack * nat * nat -> bool
 willBeOverfilled(gpset, w, vol) ==
 (
     GLOBAL`SumSet({SumWeightGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + w >= GARBAGETRUCK_MAX_WEIGHT 
-    or GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + vol >= GARBAGETRUCK_MAX_VOLUME
+    or GLOBAL`SumSet({SumVolumeGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + vol >= GARBAGETRUCK_MAX_VOLUME
 );
 
 operations

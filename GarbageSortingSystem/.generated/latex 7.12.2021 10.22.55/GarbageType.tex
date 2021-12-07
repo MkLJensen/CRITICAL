@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage{longtable}
+\usepackage[color]{vdmlisting}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\begin{document}
+\title{}
+\author{}
+\begin{vdm_al}
+class GarbageType is subclass of GLOBAL
+
+instance variables
+public weight: nat := 0; 
+inv weight > 0 and weight < GARBAGETYPE_MAX_WEIGHT;
+protected garbageId : [GLOBAL`GarbageId] := nil;
+
+
+public dimensions: [GLOBAL`dimensionsType] := nil;
+inv InvDimensions(dimensions)
+
+functions
+
+private InvDimensions : GLOBAL`dimensionsType -> bool
+InvDimensions(mk_GLOBAL`dimensionsType(width,length,height)) == 
+        width < GARBAGETYPE_MAX_WIDTH and width > 0 and   
+        length < GARBAGETYPE_MAX_LENGTH and length > 0 and
+        height < GARBAGETYPE_MAX_HEIGHT and height > 0;
+
+
+operations
+
+pure public getWeight : () ==> nat
+getWeight() == 
+    return weight;
+
+pure public getVolume : () ==> nat
+getVolume() ==
+    return dimensions.width*dimensions.length*dimensions.height;
+
+pure public getGarbageId : () ==> GLOBAL`GarbageId
+getGarbageId() ==
+    return garbageId;
+
+end GarbageType
+\end{vdm_al}
+\end{document}

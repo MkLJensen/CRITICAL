@@ -26,6 +26,6 @@ getPackWeight() ==
 
 pure public getPackVolume : () ==> nat
 getPackVolume() ==
-    return SumDimensionGarbagePack(getGarbagePack())
+    return SumVolumeGarbagePack(getGarbagePack())
 
 end GarbagePack

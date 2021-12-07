@@ -44,7 +44,7 @@ handleGarbageMap(gpMap) ==
         IO`println("Weight");
         IO`println(GLOBAL`SumWeightGarbagePack(gpMap(gptype)));
         IO`println("Volume");
-        IO`println(GLOBAL`SumDimensionGarbagePack(gpMap(gptype)));
+        IO`println(GLOBAL`SumVolumeGarbagePack(gpMap(gptype)));
         IO`println("");
         sortedGarbage(gptype) := {};
     );

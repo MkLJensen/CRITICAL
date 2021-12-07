@@ -29,12 +29,12 @@ types
 
     
 functions
-public SumDimensionGarbagePack: set of GarbageType +> nat
-SumDimensionGarbagePack(s) ==
+public SumVolumeGarbagePack: set of GarbageType +> nat
+SumVolumeGarbagePack(s) ==
     if s = {}                         
     then 0                                         
     else let e in set s in
-        e.getVolume() + SumDimensionGarbagePack(s \ {e})
+        e.getVolume() + SumVolumeGarbagePack(s \ {e})
 measure card s;
 
 public SumWeightGarbagePack: set of GarbageType +> nat

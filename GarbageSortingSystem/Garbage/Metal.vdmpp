@@ -9,7 +9,4 @@ Metal(d, w) ==
         weight := w;
         garbageId := <METALID>
     );
-
-
-
 end Metal

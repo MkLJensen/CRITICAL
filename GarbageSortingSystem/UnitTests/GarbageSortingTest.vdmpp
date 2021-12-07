@@ -83,10 +83,10 @@ operations
         glassWeight := SumWeightGarbagePack(sortedMap(<GLASSID>));
         plasticWeight := SumWeightGarbagePack(sortedMap(<PLASTICID>));
 
-        metalVol := SumDimensionGarbagePack(sortedMap(<METALID>));
-        paperVol := SumDimensionGarbagePack(sortedMap(<PAPERID>));
-        glassVol := SumDimensionGarbagePack(sortedMap(<GLASSID>));
-        plasticVol := SumDimensionGarbagePack(sortedMap(<PLASTICID>));
+        metalVol := SumVolumeGarbagePack(sortedMap(<METALID>));
+        paperVol := SumVolumeGarbagePack(sortedMap(<PAPERID>));
+        glassVol := SumVolumeGarbagePack(sortedMap(<GLASSID>));
+        plasticVol := SumVolumeGarbagePack(sortedMap(<PLASTICID>));
 
         AssertTrue(metalWeight = 636);
         AssertTrue(paperWeight = 769);
