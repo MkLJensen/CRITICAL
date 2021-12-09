@@ -27,6 +27,8 @@ types
                             length : nat
                             height : nat;
 
+    public GarbageMap = map GarbageId to set of GarbageType;
+
     
 functions
 public SumVolumeGarbagePack: set of GarbageType +> nat

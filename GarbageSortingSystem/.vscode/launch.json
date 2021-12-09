@@ -13,12 +13,12 @@
             "command": "print new World().Run()"
         },
         {
-            "name": "Launch TestRunner",
+            "name": "Launch TRunner",
             "type": "vdm",
             "request": "launch",
             "noDebug": false,
             "defaultName": null,
-            "command": "print new TestRunner().Run()"
+            "command": "print new TRunner().Run()"
         }
     ]
 }

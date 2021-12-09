@@ -1,11 +1,7 @@
-class GarbageSorter
+class GarbageSorter is subclass of GLOBAL
 
-types 
-    public GarbageMap = map GLOBAL`GarbageId to set of GarbageType;
 
 functions
-
-
 --{<GLASS> |-> {x}}
 --{<GLASS> |-> {y}}
 --{<GLASS> |->{y, x}}

@@ -41,9 +41,9 @@ handleGarbageMap(gpMap) ==
         end;
 
         -- Set can abstract the maps set as a Large GarbagePack, therefore these functions work
-        IO`println("Weight");
+        IO`print("Weight ");
         IO`println(GLOBAL`SumWeightGarbagePack(gpMap(gptype)));
-        IO`println("Volume");
+        IO`print("Volume ");
         IO`println(GLOBAL`SumVolumeGarbagePack(gpMap(gptype)));
         IO`println("");
         sortedGarbage(gptype) := {};
