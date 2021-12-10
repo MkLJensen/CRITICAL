@@ -51,10 +51,10 @@ handleGarbageMap(gpMap) ==
         end;
 
         -- Set can abstract the maps set as a Large GarbagePack, therefore these functions work
-        IO`println("Weight");
+        IO`print("Weight ");
         IO`println(GLOBAL`SumWeightGarbagePack(gpMap(gptype)));
-        IO`println("Volume");
-        IO`println(GLOBAL`SumDimensionGarbagePack(gpMap(gptype)));
+        IO`print("Volume ");
+        IO`println(GLOBAL`SumVolumeGarbagePack(gpMap(gptype)));
         IO`println("");
         sortedGarbage(gptype) := {};
     );
@@ -96,18 +96,18 @@ end RecyclingPlant
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[Step:16]{Step} & 16&100.0\% & 18 \\
+\hyperref[Step:16]{Step} & 16&100.0\% & 30 \\
 \hline
-\hyperref[addFilledTrucksToPlant:25]{addFilledTrucksToPlant} & 25&100.0\% & 12 \\
+\hyperref[addFilledTrucksToPlant:25]{addFilledTrucksToPlant} & 25&100.0\% & 20 \\
 \hline
-\hyperref[getSetOfIndividualGarbageFromTruck:69]{getSetOfIndividualGarbageFromTruck} & 69&100.0\% & 45 \\
+\hyperref[getSetOfIndividualGarbageFromTruck:69]{getSetOfIndividualGarbageFromTruck} & 69&100.0\% & 75 \\
 \hline
-\hyperref[handleGarbageMap:29]{handleGarbageMap} & 29&97.6\% & 72 \\
+\hyperref[handleGarbageMap:29]{handleGarbageMap} & 29&97.6\% & 48 \\
 \hline
-\hyperref[sortAllTrucks:53]{sortAllTrucks} & 53&100.0\% & 30 \\
+\hyperref[sortAllTrucks:53]{sortAllTrucks} & 53&100.0\% & 50 \\
 \hline
 \hline
-RecyclingPlant.vdmpp & & 98.9\% & 177 \\
+RecyclingPlant.vdmpp & & 98.9\% & 223 \\
 \hline
 \end{longtable}
 

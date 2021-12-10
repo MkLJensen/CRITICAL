@@ -1,19 +1,15 @@
 \begin{vdmpp}[breaklines=true]
-class GarbageSorter
+class GarbageSorter is subclass of GLOBAL
 
-types 
-    public GarbageMap = map GLOBAL`GarbageId to set of GarbageType;
 
 functions
-
-
 --{<GLASS> |-> {x}}
 --{<GLASS> |-> {y}}
 --{<GLASS> |->{y, x}}
 -- If domaine of m1, is in m2, then union and add too same dom
 -- else add both m1 and m2 to map, with each different dom
 (*@
-\label{MapCombine:14}
+\label{MapCombine:10}
 @*)
 public MapCombine : GarbageMap * GarbageMap -> GarbageMap
 MapCombine(m1, m2) ==
@@ -24,7 +20,7 @@ MapCombine(m1, m2) ==
 );
 
 (*@
-\label{sortSetofGarbageType:22}
+\label{sortSetofGarbageType:18}
 @*)
 public sortSetofGarbageType: set of GarbageType -> GarbageMap
 sortSetofGarbageType(s) == 
@@ -44,12 +40,12 @@ end GarbageSorter
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[MapCombine:14]{MapCombine} & 14&100.0\% & 133 \\
+\hyperref[MapCombine:10]{MapCombine} & 10&100.0\% & 90 \\
 \hline
-\hyperref[sortSetofGarbageType:22]{sortSetofGarbageType} & 22&100.0\% & 117 \\
+\hyperref[sortSetofGarbageType:18]{sortSetofGarbageType} & 18&100.0\% & 66 \\
 \hline
 \hline
-GarbageSorter.vdmpp & & 100.0\% & 250 \\
+GarbageSorter.vdmpp & & 100.0\% & 156 \\
 \hline
 \end{longtable}
 

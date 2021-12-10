@@ -13,7 +13,7 @@
 \contentsline {section}{\numberline {13}GarbageSortingTest}{13}{section.13}%
 \contentsline {section}{\numberline {14}GarbageTruckTest}{15}{section.14}%
 \contentsline {section}{\numberline {15}TRunner}{16}{section.15}%
-\contentsline {section}{\numberline {16}Test}{17}{section.16}%
+\contentsline {section}{\numberline {16}Test}{16}{section.16}%
 \contentsline {section}{\numberline {17}TestCase}{17}{section.17}%
 \contentsline {section}{\numberline {18}TestResult}{18}{section.18}%
 \contentsline {section}{\numberline {19}TestSuite}{19}{section.19}%

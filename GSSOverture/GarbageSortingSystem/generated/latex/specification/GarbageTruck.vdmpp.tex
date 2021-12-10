@@ -38,7 +38,7 @@ checkTruckWeight(gpset) ==
 private checkTruckDimension : set of GarbagePack -> bool
 checkTruckDimension(gpset) ==
 (
-    GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) >= GARBAGETRUCK_MAX_VOLUME -- = 10 Max Sizes of GarbageTypes
+    GLOBAL`SumSet({SumVolumeGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) >= GARBAGETRUCK_MAX_VOLUME -- = 10 Max Sizes of GarbageTypes
 );
 
 
@@ -49,7 +49,7 @@ public willBeOverfilled : set of GarbagePack * nat * nat -> bool
 willBeOverfilled(gpset, w, vol) ==
 (
     GLOBAL`SumSet({SumWeightGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + w >= GARBAGETRUCK_MAX_WEIGHT 
-    or GLOBAL`SumSet({SumDimensionGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + vol >= GARBAGETRUCK_MAX_VOLUME
+    or GLOBAL`SumSet({SumVolumeGarbagePack(i.getGarbagePack()) | i in set gpset & gpset <> {}}) + vol >= GARBAGETRUCK_MAX_VOLUME
 );
 
 operations
@@ -129,30 +129,30 @@ end GarbageTruck
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[GarbageTruck:43]{GarbageTruck} & 43&100.0\% & 48 \\
+\hyperref[GarbageTruck:43]{GarbageTruck} & 43&100.0\% & 66 \\
 \hline
-\hyperref[INVtruckId:14]{INVtruckId} & 14&100.0\% & 87 \\
+\hyperref[INVtruckId:14]{INVtruckId} & 14&100.0\% & 133 \\
 \hline
-\hyperref[addToTruck:75]{addToTruck} & 75&100.0\% & 74 \\
+\hyperref[addToTruck:75]{addToTruck} & 75&100.0\% & 122 \\
 \hline
-\hyperref[checkTruckDimension:28]{checkTruckDimension} & 28&100.0\% & 68 \\
+\hyperref[checkTruckDimension:28]{checkTruckDimension} & 28&100.0\% & 40 \\
 \hline
-\hyperref[checkTruckWeight:22]{checkTruckWeight} & 22&100.0\% & 292 \\
+\hyperref[checkTruckWeight:22]{checkTruckWeight} & 22&100.0\% & 484 \\
 \hline
-\hyperref[emptyTruck:83]{emptyTruck} & 83&100.0\% & 15 \\
+\hyperref[emptyTruck:83]{emptyTruck} & 83&100.0\% & 25 \\
 \hline
-\hyperref[getTruckGarbage:69]{getTruckGarbage} & 69&100.0\% & 254 \\
+\hyperref[getTruckGarbage:69]{getTruckGarbage} & 69&100.0\% & 420 \\
 \hline
-\hyperref[hasTruckBeenFilled:57]{hasTruckBeenFilled} & 57&100.0\% & 72 \\
+\hyperref[hasTruckBeenFilled:57]{hasTruckBeenFilled} & 57&100.0\% & 120 \\
 \hline
-\hyperref[isTruckFull:63]{isTruckFull} & 63&71.4\% & 92 \\
+\hyperref[isTruckFull:63]{isTruckFull} & 63&71.4\% & 152 \\
 \hline
-\hyperref[truckHasBeenFilled:51]{truckHasBeenFilled} & 51&100.0\% & 21 \\
+\hyperref[truckHasBeenFilled:51]{truckHasBeenFilled} & 51&100.0\% & 35 \\
 \hline
-\hyperref[willBeOverfilled:35]{willBeOverfilled} & 35&100.0\% & 146 \\
+\hyperref[willBeOverfilled:35]{willBeOverfilled} & 35&100.0\% & 242 \\
 \hline
 \hline
-GarbageTruck.vdmpp & & 98.4\% & 1169 \\
+GarbageTruck.vdmpp & & 98.4\% & 1839 \\
 \hline
 \end{longtable}
 

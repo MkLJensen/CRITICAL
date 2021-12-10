@@ -49,7 +49,7 @@
                 </children>
               </children>
             </children>
-            <children xsi:type="basic:PartStack" xmi:id="_IsNwTVQ7Eeyfg-a7UJKElg" elementId="bottom" containerData="2500" selectedElement="_IsNwTlQ7Eeyfg-a7UJKElg">
+            <children xsi:type="basic:PartStack" xmi:id="_IsNwTVQ7Eeyfg-a7UJKElg" elementId="bottom" containerData="2500" selectedElement="_IsNwUVQ7Eeyfg-a7UJKElg">
               <children xsi:type="advanced:Placeholder" xmi:id="_IsNwTlQ7Eeyfg-a7UJKElg" elementId="org.eclipse.pde.runtime.LogView" ref="_IsKF4FQ7Eeyfg-a7UJKElg" closeable="true">
                 <tags>View</tags>
                 <tags>categoryTag:General</tags>
@@ -94,9 +94,15 @@
       <toolbar xmi:id="_JC05cVQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.internal.introview" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_IsF0cFQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.editorss" selectedElement="_IsF0cVQ7Eeyfg-a7UJKElg">
-      <children xsi:type="basic:PartStack" xmi:id="_IsF0cVQ7Eeyfg-a7UJKElg" elementId="org.eclipse.e4.primaryDataStack">
+      <children xsi:type="basic:PartStack" xmi:id="_IsF0cVQ7Eeyfg-a7UJKElg" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_qrwtwFmzEey5VvSgK62Gxw">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
+        <children xsi:type="basic:Part" xmi:id="_qrwtwFmzEey5VvSgK62Gxw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="GarbageSortingSystem.pdf" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.ui.systemInPlaceEditor&quot; name=&quot;GarbageSortingSystem.pdf&quot; partName=&quot;GarbageSortingSystem.pdf&quot; title=&quot;GarbageSortingSystem.pdf&quot; tooltip=&quot;GarbageSortingSystem/generated/latex/GarbageSortingSystem.pdf&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/GarbageSortingSystem/generated/latex/GarbageSortingSystem.pdf&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>removeOnHide</tags>
+          <tags>org.eclipse.ui.systemInPlaceEditor</tags>
+        </children>
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_IsKF4FQ7Eeyfg-a7UJKElg" elementId="org.eclipse.pde.runtime.LogView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Error Log" iconURI="platform:/plugin/org.eclipse.ui.views.log/icons/eview16/error_log.png" tooltip="" closeable="true">
@@ -109,7 +115,7 @@
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
-      <toolbar xmi:id="_I-3mgVQ7Eeyfg-a7UJKElg" elementId="org.eclipse.pde.runtime.LogView"/>
+      <toolbar xmi:id="_I-3mgVQ7Eeyfg-a7UJKElg" elementId="org.eclipse.pde.runtime.LogView" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_IsLUAFQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.views.markers.ProblemsView"/>
@@ -133,7 +139,7 @@
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
-      <toolbar xmi:id="_i2UssVQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.console.ConsoleView" visible="false"/>
+      <toolbar xmi:id="_i2UssVQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.console.ConsoleView"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_IsLUA1Q7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.views.ContentOutline" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.views.contentoutline.ContentOutline"/>
@@ -180,7 +186,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ImKyoFQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_ImTVgFQ7Eeyfg-a7UJKElg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_IZuSfVQ7Eeyfg-a7UJKElg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_cqa58FmzEey5VvSgK62Gxw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_IZuSfVQ7Eeyfg-a7UJKElg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ImKyoVQ7Eeyfg-a7UJKElg" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -205,7 +211,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ImLZtFQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_ImT8m1Q7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_IZtrAVQ7Eeyfg-a7UJKElg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_cqekUFmzEey5VvSgK62Gxw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_IZtrAVQ7Eeyfg-a7UJKElg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ImLZtVQ7Eeyfg-a7UJKElg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -1117,7 +1123,7 @@
   <addons xmi:id="_IZVQl1Q7Eeyfg-a7UJKElg" elementId="MinMax Addon" contributorURI="platform:/plugin/org.eclipse.ui.workbench" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon"/>
   <addons xmi:id="_IZVQmFQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.workbench" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_IZdzYFQ7Eeyfg-a7UJKElg" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_IYS0IKimEeS11vbz3f9ezw" elementId="org.eclipse.ui.ide.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_cYIQEVmzEey5VvSgK62Gxw" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
   <categories xmi:id="_IZr10FQ7Eeyfg-a7UJKElg" elementId="org.eclipse.team.ui.category.team" name="Team" description="Actions that apply when working with a Team"/>
   <categories xmi:id="_IZr10VQ7Eeyfg-a7UJKElg" elementId="org.eclipse.ui.category.views" name="Views" description="Commands for opening views"/>

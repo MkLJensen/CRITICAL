@@ -28,21 +28,23 @@ types
                             length : nat
                             height : nat;
 
+    public GarbageMap = map GarbageId to set of GarbageType;
+
     
 functions
 (*@
-\label{SumDimensionGarbagePack:32}
+\label{SumVolumeGarbagePack:34}
 @*)
-public SumDimensionGarbagePack: set of GarbageType +> nat
-SumDimensionGarbagePack(s) ==
+public SumVolumeGarbagePack: set of GarbageType +> nat
+SumVolumeGarbagePack(s) ==
     if s = {}                         
     then 0                                         
     else let e in set s in
-        e.getVolume() + SumDimensionGarbagePack(s \ {e})
+        e.getVolume() + SumVolumeGarbagePack(s \ {e})
 measure card s;
 
 (*@
-\label{SumWeightGarbagePack:40}
+\label{SumWeightGarbagePack:42}
 @*)
 public SumWeightGarbagePack: set of GarbageType +> nat
 SumWeightGarbagePack(s) ==
@@ -54,7 +56,7 @@ measure card s;
 
 
 (*@
-\label{SumSet:49}
+\label{SumSet:51}
 @*)
 public SumSet: set of nat -> nat
 SumSet(s) ==
@@ -73,14 +75,14 @@ end GLOBAL
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[SumDimensionGarbagePack:32]{SumDimensionGarbagePack} & 32&100.0\% & 1189 \\
+\hyperref[SumSet:51]{SumSet} & 51&100.0\% & 444 \\
 \hline
-\hyperref[SumSet:49]{SumSet} & 49&100.0\% & 817 \\
+\hyperref[SumVolumeGarbagePack:34]{SumVolumeGarbagePack} & 34&100.0\% & 570 \\
 \hline
-\hyperref[SumWeightGarbagePack:40]{SumWeightGarbagePack} & 40&100.0\% & 4320 \\
+\hyperref[SumWeightGarbagePack:42]{SumWeightGarbagePack} & 42&100.0\% & 1246 \\
 \hline
 \hline
-GLOBAL.vdmpp & & 100.0\% & 6326 \\
+GLOBAL.vdmpp & & 100.0\% & 2260 \\
 \hline
 \end{longtable}
 

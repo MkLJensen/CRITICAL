@@ -96,10 +96,10 @@ operations
         glassWeight := SumWeightGarbagePack(sortedMap(<GLASSID>));
         plasticWeight := SumWeightGarbagePack(sortedMap(<PLASTICID>));
 
-        metalVol := SumDimensionGarbagePack(sortedMap(<METALID>));
-        paperVol := SumDimensionGarbagePack(sortedMap(<PAPERID>));
-        glassVol := SumDimensionGarbagePack(sortedMap(<GLASSID>));
-        plasticVol := SumDimensionGarbagePack(sortedMap(<PLASTICID>));
+        metalVol := (*@\vdmnotcovered{SumVolumeGarbagePack}@*)(sortedMap((*@\vdmnotcovered{<METALID>}@*)));
+        paperVol := SumVolumeGarbagePack((*@\vdmnotcovered{sortedMap}@*)((*@\vdmnotcovered{<PAPERID>}@*)));
+        glassVol := SumVolumeGarbagePack(sortedMap((*@\vdmnotcovered{<GLASSID>}@*)));
+        plasticVol := (*@\vdmnotcovered{SumVolumeGarbagePack}@*)((*@\vdmnotcovered{sortedMap}@*)((*@\vdmnotcovered{<PLASTICID>}@*)));
 
         AssertTrue(metalWeight = 636);
         AssertTrue(paperWeight = 769);
@@ -125,14 +125,14 @@ Function or operation & Line & Coverage & Calls \\
 \hline
 \hyperref[GarbageSortingTest:52]{GarbageSortingTest} & 52&0.0\% & 0 \\
 \hline
-\hyperref[RunTest:62]{RunTest} & 62&100.0\% & 1 \\
+\hyperref[RunTest:62]{RunTest} & 62&89.1\% & 1 \\
 \hline
 \hyperref[SetUp:56]{SetUp} & 56&100.0\% & 1 \\
 \hline
 \hyperref[TearDown:59]{TearDown} & 59&100.0\% & 1 \\
 \hline
 \hline
-GarbageSortingTest.vdmpp & & 98.8\% & 3 \\
+GarbageSortingTest.vdmpp & & 94.3\% & 3 \\
 \hline
 \end{longtable}
 
